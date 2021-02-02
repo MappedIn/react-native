@@ -7,6 +7,7 @@ export const MapPicker = () => {
   const {
     venueData,
     mapView,
+    nearestLocation,
     selectedMapId,
     setSelectedMapId,
     setLoading,
@@ -47,7 +48,7 @@ export const MapPicker = () => {
         height: 50,
         position: 'absolute',
         width: 150,
-        top: 110,
+        top: nearestLocation != null ? 110 : 0,
         right: 10,
       }}
       onValueChange={(itemValue) => {
