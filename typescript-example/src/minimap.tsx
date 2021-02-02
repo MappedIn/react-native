@@ -36,11 +36,10 @@ export const MiniMap = () => {
           borderColor: '#DDD',
           borderWidth: 1,
           width: '100%',
-          height: 150,
+          height: 100,
           alignItems: 'center',
           justifyContent: 'center',
           alignSelf: 'center',
-          padding: 10,
         }}>
         {miniMapState !== MINIMAP_STATE.HIDDEN && (
           <MiMiniMap

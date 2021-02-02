@@ -12,6 +12,7 @@ import {
 import {IMappedinLocation} from '@mappedin/react-native-sdk';
 import {RootContext} from './app';
 import {MiniMap} from './minimap';
+import { DirectionsPicker } from './directions-picker';
 
 export const LocationCard = () => {
   const {
@@ -76,7 +77,7 @@ export const LocationCard = () => {
     <Animated.View
       style={[
         {
-          height: directions != null ? 350 : 450,
+          height: directions != null ? height / 3 : height / 2.5,
           position: 'absolute',
           backgroundColor: '#CCC',
           bottom: 0,
@@ -107,15 +108,12 @@ export const LocationCard = () => {
                   selectedLocation?.logo?.large || venueData?.venue.logo?.large,
               }}
               style={{
-                margin: 10,
-                height: 100,
+                marginLeft: 10,
+                height: 50,
                 width: 100,
                 aspectRatio: 135 / 76,
               }}
               resizeMode="contain"></Image>
-            <Text style={{flex: 1, fontWeight: 'bold', fontSize: 20}}>
-              {selectedLocation?.name}
-            </Text>
           </View>
           <ScrollView>
             <Text style={{fontSize: 16, padding: 10}}>
@@ -124,6 +122,7 @@ export const LocationCard = () => {
           </ScrollView>
         </>
       )}
+      <DirectionsPicker /> 
       {directions == null && <MiniMap />}
       {directions != null ? (
         <View style={{padding: 10}}>
