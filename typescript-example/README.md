@@ -12,7 +12,7 @@
 
    `$ npm install`
 
-2. Install PODS:
+2. Install PODS (this needs to be done after updates as well):
 
    `$ cd ios && pod install`
 

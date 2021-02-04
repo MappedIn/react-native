@@ -10,16 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@mappedin/react-native-sdk": "^3.0.0",
+    "@mappedin/react-native-sdk": "^3.0.5",
     "@react-native-picker/picker": "^1.9.10",
     "@types/react-native": "^0.63.46",
-    "@types/uuid": "^8.3.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-get-random-values": "^1.5.1",
     "react-native-location": "^2.5.0",
-    "react-native-webview": "^11.2.1",
-    "uuid": "^8.3.2"
+    "react-native-webview": "^11.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
