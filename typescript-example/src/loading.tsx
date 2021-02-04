@@ -5,9 +5,11 @@ export const Loading = () => {
   return (
     <View
       style={{
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
         position: "absolute",
-        width: '100%',
-        height: '100%',
         zIndex: 999,
         backgroundColor: 'white',
         alignItems: 'center',

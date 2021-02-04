@@ -11,10 +11,19 @@ import type {
 import {Map} from './map';
 import {MapPicker} from './map-picker';
 import {useLocation} from './use-my-location';
+
 import {Loading} from './loading';
 import {LocationCard} from './location-card';
 import {MyLocation} from './my-location';
+import {Directions} from './directions-card';
+
 import credentials from './credentials.json';
+
+export enum APPSTATE {
+  HOME = 'HOME',
+  DIRECTIONS = 'DIRECTIONS',
+  PROFILE = 'PROFILE',
+}
 
 const useRootContext = () => {
   const [selectedMapId, setSelectedMapId] = React.useState<
@@ -36,9 +45,28 @@ const useRootContext = () => {
     IMappedinMap['name']
   >();
 
+  const [appState, setAppState] = React.useState<APPSTATE>(APPSTATE.HOME);
+  const [departure, setDeparture] = React.useState<IMappedinLocation>();
+  const [destination, setDestination] = React.useState<IMappedinLocation>();
+
   const options = React.useRef<TMiMapViewOptions>(credentials);
 
   return {
+    departure,
+    setDeparture,
+    reset: () => {
+      mapView.current?.clearJourney();
+      mapView.current?.clearAllPolygonColors();
+      setDirections(undefined);
+      setDeparture(undefined);
+      setDestination(undefined);
+      setSelectedLocation(undefined);
+      setAppState(APPSTATE.HOME);
+    },
+    setDestination,
+    destination,
+    appState,
+    setAppState,
     currentLevel,
     setCurrentLevel,
     loading,
@@ -58,7 +86,17 @@ const useRootContext = () => {
   };
 };
 
-interface IRootContext {
+export interface IRootContext {
+  appState: APPSTATE;
+  departure: IMappedinLocation | undefined;
+  setDeparture: React.Dispatch<
+    React.SetStateAction<IMappedinLocation | undefined>
+  >;
+  destination: IMappedinLocation | undefined;
+  setDestination: React.Dispatch<
+    React.SetStateAction<IMappedinLocation | undefined>
+  >;
+  setAppState: React.Dispatch<React.SetStateAction<APPSTATE>>;
   nearestLocation: IMappedinLocation | undefined;
   directions: TMappedinDirections | undefined;
   mapView: React.MutableRefObject<MapViewStore | undefined>;
@@ -66,6 +104,7 @@ interface IRootContext {
   venueData: IMappedin | undefined;
   selectedLocation: any;
   loading: boolean;
+  reset: () => void;
   options: React.MutableRefObject<TMiMapViewOptions>;
   currentLevel: IMappedinMap['name'] | undefined;
   setCurrentLevel: React.Dispatch<
@@ -89,40 +128,41 @@ export const RootContext = React.createContext<IRootContext>(
   {} as IRootContext,
 );
 
-const App = () => {
+export const App = () => {
   const rootController = useRootContext();
+  const {setAppState, appState, selectedLocation} = rootController;
 
-  const {listen} = useLocation();
-
-  const turnOnBlueDot = React.useCallback(() => {
-    if (
-      rootController.venueData == null ||
-      rootController.mapView?.current == null
-    ) {
-      return;
-    }
-
-    rootController.mapView.current.enableBlueDot({
-      allowImplicitFloorLevel: true,
-    });
-    listen((location) => {
-      console.log(location);
-      rootController.mapView.current!.overrideLocation(location);
-    });
-  }, [rootController.venueData]);
+  const {
+    enable: enableRealLocation,
+    isEnabled: isRealLocationEnabled,
+  } = useLocation(rootController);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <RootContext.Provider value={rootController}>
+    <RootContext.Provider value={rootController}>
+      <SafeAreaView style={{flex: 1}}>
         <Map options={rootController.options.current}></Map>
+
         <MapPicker />
-        <Button title="Turn on BlueDot" onPress={turnOnBlueDot}></Button>
+        {appState === APPSTATE.DIRECTIONS && <Directions />}
+        {appState === APPSTATE.HOME && (
+          <Button
+            title="Get Directions"
+            onPress={() => {
+              setAppState(APPSTATE.DIRECTIONS);
+            }}></Button>
+        )}
+        {!isRealLocationEnabled && !isRealLocationEnabled && (
+          <Button
+            title="Enable Real Location"
+            onPress={() => {
+              enableRealLocation();
+            }}></Button>
+        )}
         <MyLocation />
-        <LocationCard />
+        {appState === APPSTATE.PROFILE && selectedLocation && <LocationCard />}
+
         {rootController.loading && <Loading />}
-      </RootContext.Provider>
-    </SafeAreaView>
+      </SafeAreaView>
+    </RootContext.Provider>
   );
 };
-
-export default App;

@@ -1,19 +1,63 @@
-import React, { useContext } from 'react';
-import { MiMapView } from '@mappedin/react-native-sdk';
-import type { TMiMapViewOptions } from '@mappedin/react-native-sdk';
-import { RootContext } from './app';
+import React, { useContext, useEffect } from 'react';
+import { MiMapView, TMiMapViewOptions } from '@mappedin/react-native-sdk';
+import { RootContext, APPSTATE } from './app';
 
 export const Map = ({ options }: { options: TMiMapViewOptions }) => {
   const {
     mapView,
     setVenue,
+    directions,
+    selectedMapId,
     setSelectedMapId,
     setCurrentLevel,
     setSelectedLocation,
     setNearestLocation,
     venueData,
+    reset,
+    setAppState,
     setLoading,
   } = useContext(RootContext);
+
+  useEffect(() => {
+    async function setMap() {
+      if (directions != null) {
+        setLoading(true);
+
+        await mapView.current?.focusOn({
+          // @ts-ignore
+          nodes: directions.path
+            .filter((n) => n.map === selectedMapId)
+            .map((n) => n.id),
+          minZoom: 1500,
+          tilt: 0.1,
+          padding: {
+            top: 40,
+            left: 40,
+            right: 40,
+            bottom: 250,
+          },
+        });
+      } else if (
+        selectedMapId != null &&
+        mapView.current?.currentMap?.id !== selectedMapId
+      ) {
+        setLoading(true);
+
+        if (mapView.current?.currentMap?.id !== selectedMapId) {
+          await mapView.current?.setMap(selectedMapId);
+        }
+        if (directions == null) {
+          await mapView.current?.focusOn({
+            polygons: venueData?.polygons.filter(
+              (p) => p.map === selectedMapId,
+            ),
+          });
+        }
+      }
+      setLoading(false);
+    }
+    setMap();
+  }, [selectedMapId]);
 
   return (
     <MiMapView
@@ -27,6 +71,9 @@ export const Map = ({ options }: { options: TMiMapViewOptions }) => {
       onDataLoaded={({ venueData }) => {
         setVenue(venueData);
         setSelectedMapId(mapView.current?.currentMap?.id);
+      }}
+      onMapChanged={({ map }) => {
+        setSelectedMapId(map.id);
       }}
       onFirstMapLoaded={() => {
         setLoading(false);
@@ -44,13 +91,9 @@ export const Map = ({ options }: { options: TMiMapViewOptions }) => {
           setCurrentLevel(update.map.name);
         }
       }}
-      onNothingClicked={() => {
-        setSelectedLocation(undefined);
-        mapView.current?.removeAllPaths();
-        mapView.current?.focusOn({});
-        mapView.current?.clearAllPolygonColors();
-      }}
+      onNothingClicked={reset}
       onPolygonClicked={({ polygon }) => {
+        setAppState(APPSTATE.PROFILE);
         mapView.current?.setSafeArea({
           top: 0,
           bottom: 450,
