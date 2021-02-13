@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import type { IMappedinMap } from '@mappedin/react-native-sdk';
 import { Picker } from '@react-native-picker/picker';
 import { RootContext } from './app';
@@ -7,28 +7,8 @@ export const MapPicker = () => {
   const {
     venueData,
     mapView,
-    nearestLocation,
-    selectedMapId,
-    setSelectedMapId,
-    setLoading,
+    selectedMapId
   } = useContext(RootContext);
-
-  useEffect(() => {
-    async function setMap() {
-      if (
-        mapView.current?.currentMap?.id !== selectedMapId &&
-        selectedMapId != null
-      ) {
-        setLoading(true);
-        await mapView.current?.setMap(selectedMapId);
-        mapView.current?.focusOn({
-          polygons: venueData?.polygons.filter((p) => p.map === selectedMapId),
-        });
-        setLoading(false);
-      }
-    }
-    setMap();
-  }, [selectedMapId]);
 
   if (venueData == null) {
     return null;
@@ -48,11 +28,11 @@ export const MapPicker = () => {
         height: 50,
         position: 'absolute',
         width: 150,
-        top: nearestLocation != null ? 110 : 0,
+        top: 110,
         right: 10,
       }}
       onValueChange={(itemValue) => {
-        setSelectedMapId(itemValue as IMappedinMap['id']);
+        mapView.current?.setMap(itemValue as IMappedinMap['id']);
       }}
     >
       {venueData.maps.map((m) => (
