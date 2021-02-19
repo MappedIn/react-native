@@ -48,6 +48,7 @@ const useRootContext = () => {
   const [appState, setAppState] = React.useState<APPSTATE>(APPSTATE.HOME);
   const [departure, setDeparture] = React.useState<IMappedinLocation>();
   const [destination, setDestination] = React.useState<IMappedinLocation>();
+  const [language, setLanguage] = React.useState('en-US');
 
   const options = React.useRef<TMiMapViewOptions>(credentials);
 
@@ -65,6 +66,8 @@ const useRootContext = () => {
     },
     setDestination,
     destination,
+    language,
+    setLanguage,
     appState,
     setAppState,
     currentLevel,
@@ -130,7 +133,13 @@ export const RootContext = React.createContext<IRootContext>(
 
 export const App = () => {
   const rootController = useRootContext();
-  const {setAppState, appState, selectedLocation} = rootController;
+  const {
+    setAppState,
+    appState,
+    selectedLocation,
+    language,
+    setLanguage,
+  } = rootController;
 
   const {
     enable: enableRealLocation,
@@ -158,6 +167,15 @@ export const App = () => {
               enableRealLocation();
             }}></Button>
         )}
+        <Button
+          title={
+            language === 'en-US' ? 'Switch to Arabic' : 'Switch to English'
+          }
+          onPress={() => {
+            setLanguage((curLanguage) =>
+              curLanguage === 'en-US' ? 'ar-AE' : 'en-US',
+            );
+          }}></Button>
         <MyLocation />
         {appState === APPSTATE.PROFILE && selectedLocation && <LocationCard />}
 

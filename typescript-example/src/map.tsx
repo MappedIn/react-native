@@ -7,6 +7,7 @@ export const Map = ({ options }: { options: TMiMapViewOptions }) => {
     mapView,
     setVenue,
     directions,
+    language,
     selectedMapId,
     setSelectedMapId,
     setCurrentLevel,
@@ -62,7 +63,7 @@ export const Map = ({ options }: { options: TMiMapViewOptions }) => {
   return (
     <MiMapView
       style={{ flex: 1 }}
-      key="mappedin"
+      key={language}
       ref={(ctrl) => {
         if (ctrl != null) {
           mapView.current = ctrl;
@@ -78,7 +79,8 @@ export const Map = ({ options }: { options: TMiMapViewOptions }) => {
       onFirstMapLoaded={() => {
         setLoading(false);
       }}
-      options={options}
+      //@ts-ignore <- workaround until next release
+      options={{ ...options, language }}
       onBlueDotUpdated={({ update }) => {
         const nearestNode = update.nearestNode;
         if (nearestNode != null) {
