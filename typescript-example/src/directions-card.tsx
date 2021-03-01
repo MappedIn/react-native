@@ -1,13 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { Dimensions, Text, TouchableOpacity, View } from 'react-native';
-import type { IMappedinLocation } from '@mappedin/react-native-sdk';
-import { APPSTATE, RootContext } from './app';
-import { Picker } from '@react-native-picker/picker';
-import { Card } from './card';
+import React, {useContext, useEffect} from 'react';
+import {Button, Dimensions, Text, TouchableOpacity, View} from 'react-native';
+import {
+  IMappedinLocation,
+  IMappedinNode,
+  MappedinLocation,
+  MappedinNode,
+} from '@mappedin/react-native-sdk';
+import {APPSTATE, RootContext} from './app';
+import {Picker} from '@react-native-picker/picker';
+import {Card} from './card';
+import * as Svg from 'react-native-svg';
 
 enum STATE {
   DIRECTIONS,
-  DIRECTIONS_FROM_LOCATION,
+  DIRECTIONS_SET_FROM_MAP,
 }
 
 const LocationsPickerModal = ({
@@ -15,7 +21,7 @@ const LocationsPickerModal = ({
   locationIdSelected,
 }: {
   locations: IMappedinLocation[];
-  locationIdSelected: (id: IMappedinLocation['id']) => void;
+  locationIdSelected: (id: string) => void;
 }) => {
   if (locations == null || locations.length === 0) {
     return null;
@@ -31,11 +37,10 @@ const LocationsPickerModal = ({
         bottom: 0,
         alignContent: 'center',
         justifyContent: 'center',
-      }}
-    >
-      <View style={{ backgroundColor: '#DDD' }}>
+      }}>
+      <View style={{backgroundColor: '#DDD'}}>
         <Picker
-          selectedValue={-1}
+          selectedValue={'-1'}
           mode="dropdown"
           style={{
             alignContent: 'center',
@@ -44,9 +49,8 @@ const LocationsPickerModal = ({
             borderColor: '#AAA',
           }}
           onValueChange={(locationId) => {
-            locationIdSelected(locationId as string);
-          }}
-        >
+            locationIdSelected(locationId);
+          }}>
           {locations.map((l) => (
             <Picker.Item key={l.id} label={l.name} value={l.id} />
           ))}
@@ -73,11 +77,13 @@ export const Directions = () => {
     selectedLocation,
     setDestination,
     directions,
+    selectedMapId,
+    mapDimensions,
     setDirections,
     mapView,
   } = useContext(RootContext);
 
-  const [state] = React.useState<STATE>(STATE.DIRECTIONS);
+  const [state, setState] = React.useState<STATE>(STATE.DIRECTIONS);
   const [editing, setEditing] = React.useState<FIELD>();
 
   if (
@@ -94,20 +100,10 @@ export const Directions = () => {
         destination != null &&
         appState === APPSTATE.DIRECTIONS
       ) {
-        if (departure != null) {
-          mapView.current?.setPolygonColor(departure.polygons[0].id, 'red');
-        }
-
-        if (destination != null) {
-          mapView.current?.setPolygonColor(destination.polygons[0].id, 'red');
-        }
-
         const directions = await mapView.current?.getDirections({
           from: departure!,
           to: destination!,
         });
-
-        console.log(departure, destination)
 
         if (directions == null || directions.path.length === 0) {
           console.log('Unable to navigate');
@@ -116,7 +112,12 @@ export const Directions = () => {
         }
 
         await mapView.current?.drawJourney(directions, {
-          pathOptions: { displayArrowsOnPath: true, nearRadius: 10, farRadius: 30, color: 'green' },
+          pathOptions: {
+            displayArrowsOnPath: true,
+            nearRadius: 10,
+            farRadius: 30,
+            color: 'green',
+          },
         });
         // , {
         // connectionTemplateString: `
@@ -175,6 +176,18 @@ export const Directions = () => {
   }, [departure, destination, appState]);
 
   useEffect(() => {
+    if (departure instanceof MappedinNode) {
+    } else if (departure instanceof MappedinLocation) {
+      mapView.current?.setPolygonColor(departure.polygons[0].id, 'red');
+    }
+
+    if (destination instanceof MappedinNode) {
+    } else if (destination instanceof MappedinLocation) {
+      mapView.current?.setPolygonColor(destination.polygons[0].id, 'red');
+    }
+  }, [departure, destination]);
+
+  useEffect(() => {
     if (selectedLocation != null) {
       mapView.current?.clearJourney();
     }
@@ -186,23 +199,88 @@ export const Directions = () => {
 
   return (
     <>
-      <Card
-        desiredHeight={Dimensions.get('window').height / 5}
-        isOpen={state === STATE.DIRECTIONS}
-      >
-        {directions == null ? (
-          <View style={{ display: 'flex', flex: 1 }}>
-            <Text style={{ fontSize: 20, alignSelf: 'center' }}>
-              Directions
+      {state === STATE.DIRECTIONS_SET_FROM_MAP && (
+        <>
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              top: 50,
+              width: '100%',
+              zIndex: 999,
+            }}>
+            <Text style={{fontSize: 22, alignSelf: 'center'}}>
+              Select point on map
             </Text>
+          </View>
+          <View
+            style={{
+              position: 'absolute',
+              top: mapDimensions.height / 2 - 16,
+              left: mapDimensions.width / 2 - 16,
+            }}>
+            <Svg.Svg height={32} viewBox="-96 0 464 464" width={32}>
+              <Svg.Path
+                d="m120 160h32v256c0 8.835938-7.164062 16-16 16s-16-7.164062-16-16zm0 0"
+                fill="#494342"
+              />
+              <Svg.Path
+                d="m232 96c0 53.019531-42.980469 96-96 96s-96-42.980469-96-96 42.980469-96 96-96 96 42.980469 96 96zm0 0"
+                fill="#ad2943"
+              />
+              <Svg.Path
+                d="m200 96c0 35.347656-28.652344 64-64 64s-64-28.652344-64-64 28.652344-64 64-64 64 28.652344 64 64zm0 0"
+                fill="#ee3446"
+              />
+            </Svg.Svg>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}>
+            <Button
+              title="Confirm"
+              onPress={async () => {
+                const node = await mapView.current?.getNearestNodeByScreenCoordinates(
+                  mapDimensions.width / 2,
+                  mapDimensions.height / 2 - 16,
+                  venueData.maps.find((m) => m.id === selectedMapId)!,
+                );
+                if (node != null) {
+                  console.log(node.id);
+                  if (editing === FIELD.DEPARTURE) {
+                    setDeparture(node.locations?.[0] || node);
+                  } else if (editing === FIELD.DESTINATION) {
+                    setDestination(node.locations?.[0] || node);
+                  }
+                  setEditing(undefined);
+                  setState(STATE.DIRECTIONS);
+                }
+              }}></Button>
+            <Button
+              title="Cancel"
+              onPress={async () => {
+                setState(STATE.DIRECTIONS);
+              }}></Button>
+          </View>
+        </>
+      )}
+      <Card
+        desiredHeight={mapDimensions.height / 5}
+        isOpen={state === STATE.DIRECTIONS}>
+        {directions == null ? (
+          <View style={{display: 'flex', flex: 1}}>
+            <Text style={{fontSize: 20, alignSelf: 'center'}}>Directions</Text>
             <View
               style={{
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-              }}
-            >
-              <Text style={{ fontSize: 18 }}>Departure:</Text>
+              }}>
+              <Text style={{fontSize: 18}}>Departure:</Text>
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -213,27 +291,33 @@ export const Directions = () => {
                 }}
                 onPress={() => {
                   setEditing(FIELD.DEPARTURE);
-                }}
-              >
+                }}>
                 <View
                   style={{
                     flex: 1,
-                  }}
-                >
-                  <Text style={{ fontSize: 18 }}>
-                    {departure?.name || 'Tap to select'}
+                  }}>
+                  <Text style={{fontSize: 18}}>
+                    {departure instanceof MappedinLocation
+                      ? departure?.name
+                      : departure?.id || 'Tap to select'}
                   </Text>
                 </View>
               </TouchableOpacity>
+              <Button
+                title="Set From Map"
+                onPress={() => {
+                  setEditing(FIELD.DEPARTURE);
+                  setState(STATE.DIRECTIONS_SET_FROM_MAP);
+                }}
+              />
             </View>
             <View
               style={{
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-              }}
-            >
-              <Text style={{ fontSize: 18 }}>Destination:</Text>
+              }}>
+              <Text style={{fontSize: 18}}>Destination:</Text>
               <TouchableOpacity
                 style={{
                   flex: 1,
@@ -244,26 +328,43 @@ export const Directions = () => {
                 }}
                 onPress={() => {
                   setEditing(FIELD.DESTINATION);
-                }}
-              >
+                }}>
                 <View
                   style={{
                     flex: 1,
-                  }}
-                >
-                  <Text style={{ fontSize: 18 }}>
-                    {destination?.name || 'Tap to select'}
+                  }}>
+                  <Text style={{fontSize: 18}}>
+                    {destination instanceof MappedinLocation
+                      ? destination?.name
+                      : destination?.id || 'Tap to select'}
                   </Text>
                 </View>
               </TouchableOpacity>
+              <Button
+                title="Set From Map"
+                onPress={() => {
+                  setEditing(FIELD.DESTINATION);
+                  setState(STATE.DIRECTIONS_SET_FROM_MAP);
+                }}
+              />
             </View>
           </View>
         ) : (
-          <View style={{ padding: 10 }}>
-            <Text style={{ fontSize: 16 }}>From: {departure?.name}</Text>
-            <Text style={{ fontSize: 16 }}>To: {destination?.name}</Text>
+          <View style={{padding: 10}}>
+            <Text style={{fontSize: 16}}>
+              From:{' '}
+              {departure instanceof MappedinLocation
+                ? departure?.name
+                : departure?.id}
+            </Text>
+            <Text style={{fontSize: 16}}>
+              To:{' '}
+              {destination instanceof MappedinLocation
+                ? destination?.name
+                : destination?.id}
+            </Text>
 
-            <Text style={{ alignSelf: 'center', fontSize: 20, marginTop: 20 }}>
+            <Text style={{alignSelf: 'center', fontSize: 20, marginTop: 20}}>
               Distance: {Math.floor(directions.distance)} feet
             </Text>
           </View>

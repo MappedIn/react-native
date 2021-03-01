@@ -1,13 +1,13 @@
 import React from 'react';
 import RNLocation from 'react-native-location';
-import type { TGeolocationObject } from '@mappedin/react-native-sdk';
-import { IRootContext } from './app';
+import type {TGeolocationObject} from '@mappedin/react-native-sdk';
+import {IRootContext} from './app';
 
 RNLocation.configure({
   distanceFilter: 5.0,
 });
 
-export const useLocation = ({ venueData, mapView }: IRootContext) => {
+export const useLocation = ({venueData, mapView }: IRootContext) => {
   const [enabled, setEnabled] = React.useState(false);
 
   const listen = React.useCallback<
@@ -48,9 +48,8 @@ export const useLocation = ({ venueData, mapView }: IRootContext) => {
     if (venueData != null && enabled === true && mapView != null) {
       return;
     }
-    mapView.current!.enableBlueDot({
+    mapView.current!.BlueDot.enable({
       allowImplicitFloorLevel: true,
-      smoothing: false,
     });
     listen((location) => {
       console.log(location);

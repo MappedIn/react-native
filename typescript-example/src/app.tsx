@@ -7,7 +7,9 @@ import type {
   IMappedinMap,
   TMappedinDirections,
   TMiMapViewOptions,
+  IMappedinNode,
 } from '@mappedin/react-native-sdk';
+import {STATE} from '@mappedin/react-native-sdk';
 import {Map} from './map';
 import {MapPicker} from './map-picker';
 import {useLocation} from './use-my-location';
@@ -46,8 +48,13 @@ const useRootContext = () => {
   >();
 
   const [appState, setAppState] = React.useState<APPSTATE>(APPSTATE.HOME);
-  const [departure, setDeparture] = React.useState<IMappedinLocation>();
-  const [destination, setDestination] = React.useState<IMappedinLocation>();
+  const [departure, setDeparture] = React.useState<IMappedinLocation | IMappedinNode>();
+  const [destination, setDestination] = React.useState<IMappedinLocation | IMappedinNode>();
+  const [mapState, setMapState] = React.useState<STATE>(STATE.EXPLORE);
+  const [mapDimensions, setMapDimensions] = React.useState({
+    width: 0,
+    height: 0,
+  });
 
   const options = React.useRef<TMiMapViewOptions>(credentials);
 
@@ -63,6 +70,8 @@ const useRootContext = () => {
       setSelectedLocation(undefined);
       setAppState(APPSTATE.HOME);
     },
+    mapDimensions,
+    setMapDimensions,
     setDestination,
     destination,
     appState,
@@ -75,6 +84,8 @@ const useRootContext = () => {
     directions,
     setDirections,
     mapView,
+    mapState,
+    setMapState,
     selectedMapId,
     venueData,
     selectedLocation,
@@ -88,13 +99,13 @@ const useRootContext = () => {
 
 export interface IRootContext {
   appState: APPSTATE;
-  departure: IMappedinLocation | undefined;
+  departure: IMappedinLocation | IMappedinNode | undefined;
   setDeparture: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | undefined>
+    React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
   >;
-  destination: IMappedinLocation | undefined;
+  destination: IMappedinLocation | IMappedinNode | undefined;
   setDestination: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | undefined>
+    React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
   >;
   setAppState: React.Dispatch<React.SetStateAction<APPSTATE>>;
   nearestLocation: IMappedinLocation | undefined;
@@ -105,6 +116,12 @@ export interface IRootContext {
   selectedLocation: any;
   loading: boolean;
   reset: () => void;
+  mapDimensions: {width: number; height: number};
+  setMapDimensions: React.Dispatch<
+    React.SetStateAction<{width: number; height: number}>
+  >;
+  mapState: STATE;
+  setMapState: React.Dispatch<React.SetStateAction<STATE>>;
   options: React.MutableRefObject<TMiMapViewOptions>;
   currentLevel: IMappedinMap['name'] | undefined;
   setCurrentLevel: React.Dispatch<
@@ -130,13 +147,15 @@ export const RootContext = React.createContext<IRootContext>(
 
 export const App = () => {
   const rootController = useRootContext();
-  const {setAppState, appState, selectedLocation} = rootController;
-
   const {
-    enable: enableRealLocation,
-    isEnabled: isRealLocationEnabled,
-  } = useLocation(rootController);
+    setAppState,
+    appState,
+    selectedLocation,
+    mapView,
+    mapState,
+  } = rootController;
 
+  const {enable, isEnabled} = useLocation(rootController);
   return (
     <RootContext.Provider value={rootController}>
       <SafeAreaView style={{flex: 1}}>
@@ -151,16 +170,26 @@ export const App = () => {
               setAppState(APPSTATE.DIRECTIONS);
             }}></Button>
         )}
-        {!isRealLocationEnabled && !isRealLocationEnabled && (
+        {!isEnabled && (
           <Button
             title="Enable Real Location"
             onPress={() => {
-              enableRealLocation();
+              enable();
             }}></Button>
         )}
         <MyLocation />
         {appState === APPSTATE.PROFILE && selectedLocation && <LocationCard />}
-
+        <Button
+          title={
+            mapState === STATE.EXPLORE
+              ? 'Enable follow mode'
+              : 'Disable Follow Mode'
+          }
+          onPress={() => {
+            mapView.current?.setState(
+              mapState === STATE.EXPLORE ? STATE.FOLLOW : STATE.EXPLORE,
+            );
+          }}></Button>
         {rootController.loading && <Loading />}
       </SafeAreaView>
     </RootContext.Provider>

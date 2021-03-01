@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import type { IMappedinMap } from '@mappedin/react-native-sdk';
 import { Picker } from '@react-native-picker/picker';
 import { RootContext } from './app';

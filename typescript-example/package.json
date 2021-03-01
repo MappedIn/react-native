@@ -10,13 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@mappedin/react-native-sdk": "^3.0.7",
+    "@mappedin/react-native-sdk": "^3.0.8",
     "@react-native-picker/picker": "^1.9.10",
     "@types/react-native": "^0.63.46",
-    "myprojectname": "../../react-native-sdk-v3",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-location": "^2.5.0",
+    "react-native-svg": "^12.1.0",
     "react-native-webview": "^11.2.1"
   },
   "devDependencies": {
