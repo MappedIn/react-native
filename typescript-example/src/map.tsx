@@ -1,5 +1,9 @@
 import React, {useContext, useEffect} from 'react';
-import {MiMapView, TMiMapViewOptions} from '@mappedin/react-native-sdk';
+import {
+  MARKER_ANCHOR,
+  MiMapView,
+  TMiMapViewOptions,
+} from '@mappedin/react-native-sdk';
 import {RootContext, APPSTATE} from './app';
 import {View} from 'react-native';
 
@@ -15,7 +19,10 @@ export const Map = ({options}: {options: TMiMapViewOptions}) => {
     setSelectedLocation,
     setNearestLocation,
     venueData,
+    distancePoints,
+    setDistancePoints,
     reset,
+    appState,
     setMapDimensions,
     setAppState,
     setLoading,
@@ -100,34 +107,16 @@ export const Map = ({options}: {options: TMiMapViewOptions}) => {
         }}
         onNothingClicked={reset}
         onPolygonClicked={({polygon}) => {
-          setAppState(APPSTATE.PROFILE);
-          mapView.current?.setSafeArea({
-            top: 0,
-            bottom: 450,
-            left: 0,
-            right: 0,
-          });
-          const location = venueData!.locations.find((l) =>
-            l.polygons.map((p) => p.id).includes(polygon.id),
-          );
-
-          if (location != null) {
-            setSelectedLocation(location);
+          if (appState === APPSTATE.DISTANCE) {
+            if (distancePoints[0] == null) {
+              setDistancePoints([polygon, null]);
+            } else if (distancePoints[1] == null) {
+              setDistancePoints([distancePoints[0], polygon]);
+            }
+          } else {
+            setAppState(APPSTATE.PROFILE);
+            setSelectedLocation(polygon.locations[0]);
           }
-          mapView.current?.clearAllPolygonColors();
-          mapView.current?.setPolygonColor(polygon.id, 'red');
-          mapView.current!.focusOn({
-            polygons: [polygon.id],
-            minZoom: 2500,
-            tilt: 0.2,
-            // changeZoom: false,
-            padding: {
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 450,
-            },
-          });
         }}
       />
     </View>
