@@ -8,6 +8,8 @@ import type {
   TMappedinDirections,
   TMiMapViewOptions,
   IMappedinNode,
+  MappedinLocation,
+  MappedinPolygon,
 } from '@mappedin/react-native-sdk';
 import {STATE} from '@mappedin/react-native-sdk';
 import {Map} from './map';
@@ -20,11 +22,13 @@ import {MyLocation} from './my-location';
 import {Directions} from './directions-card';
 
 import credentials from './credentials.json';
+import {DistanceCard} from './distance';
 
 export enum APPSTATE {
   HOME = 'HOME',
   DIRECTIONS = 'DIRECTIONS',
   PROFILE = 'PROFILE',
+  DISTANCE = 'DISTANCE',
 }
 
 const useRootContext = () => {
@@ -48,19 +52,28 @@ const useRootContext = () => {
   >();
 
   const [appState, setAppState] = React.useState<APPSTATE>(APPSTATE.HOME);
-  const [departure, setDeparture] = React.useState<IMappedinLocation | IMappedinNode>();
-  const [destination, setDestination] = React.useState<IMappedinLocation | IMappedinNode>();
+  const [departure, setDeparture] = React.useState<
+    IMappedinLocation | IMappedinNode
+  >();
+  const [destination, setDestination] = React.useState<
+    IMappedinLocation | IMappedinNode
+  >();
   const [mapState, setMapState] = React.useState<STATE>(STATE.EXPLORE);
   const [mapDimensions, setMapDimensions] = React.useState({
     width: 0,
     height: 0,
   });
+  const [distancePoints, setDistancePoints] = React.useState<
+    [MappedinPolygon | null, MappedinPolygon | null]
+  >([null, null]);
 
   const options = React.useRef<TMiMapViewOptions>(credentials);
 
   return {
     departure,
     setDeparture,
+    distancePoints,
+    setDistancePoints,
     reset: () => {
       mapView.current?.clearJourney();
       mapView.current?.clearAllPolygonColors();
@@ -103,6 +116,10 @@ export interface IRootContext {
   setDeparture: React.Dispatch<
     React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
   >;
+  distancePoints: [MappedinPolygon | null, MappedinPolygon | null];
+  setDistancePoints: React.Dispatch<
+    React.SetStateAction<[MappedinPolygon | null, MappedinPolygon | null]>
+  >;
   destination: IMappedinLocation | IMappedinNode | undefined;
   setDestination: React.Dispatch<
     React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
@@ -113,7 +130,7 @@ export interface IRootContext {
   mapView: React.MutableRefObject<MapViewStore | undefined>;
   selectedMapId: string | undefined;
   venueData: IMappedin | undefined;
-  selectedLocation: any;
+  selectedLocation: MappedinLocation | undefined;
   loading: boolean;
   reset: () => void;
   mapDimensions: {width: number; height: number};
@@ -156,6 +173,59 @@ export const App = () => {
   } = rootController;
 
   const {enable, isEnabled} = useLocation(rootController);
+
+  const DistanceButton = (
+    <Button
+      title="Get Distance"
+      onPress={() => {
+        setAppState(APPSTATE.DISTANCE);
+      }}></Button>
+  );
+
+  const DirectionsButton = (
+    <Button
+      title="Get Directions"
+      onPress={() => {
+        setAppState(APPSTATE.DIRECTIONS);
+      }}></Button>
+  );
+
+  const FollowExploreButton = (
+    <Button
+      title={
+        mapState === STATE.EXPLORE
+          ? 'Enable follow mode'
+          : 'Disable Follow Mode'
+      }
+      onPress={() => {
+        mapView.current?.setState(
+          mapState === STATE.EXPLORE ? STATE.FOLLOW : STATE.EXPLORE,
+        );
+      }}></Button>
+  );
+
+  const EnableLocationButton = !isEnabled && (
+    <Button
+      title="Enable Real Location"
+      onPress={() => {
+        enable();
+      }}></Button>
+  );
+
+  /**
+   * Convenient way to configure what buttons to show depending on current app state
+   */
+  const whatButtonsToDisplay: {
+    [key in APPSTATE]?: React.ReactNode[];
+  } = {
+    [APPSTATE.HOME]: [
+      DistanceButton,
+      DirectionsButton,
+      FollowExploreButton,
+      EnableLocationButton,
+    ],
+  };
+
   return (
     <RootContext.Provider value={rootController}>
       <SafeAreaView style={{flex: 1}}>
@@ -163,33 +233,14 @@ export const App = () => {
 
         <MapPicker />
         {appState === APPSTATE.DIRECTIONS && <Directions />}
-        {appState === APPSTATE.HOME && (
-          <Button
-            title="Get Directions"
-            onPress={() => {
-              setAppState(APPSTATE.DIRECTIONS);
-            }}></Button>
-        )}
-        {!isEnabled && (
-          <Button
-            title="Enable Real Location"
-            onPress={() => {
-              enable();
-            }}></Button>
-        )}
         <MyLocation />
         {appState === APPSTATE.PROFILE && selectedLocation && <LocationCard />}
-        <Button
-          title={
-            mapState === STATE.EXPLORE
-              ? 'Enable follow mode'
-              : 'Disable Follow Mode'
-          }
-          onPress={() => {
-            mapView.current?.setState(
-              mapState === STATE.EXPLORE ? STATE.FOLLOW : STATE.EXPLORE,
-            );
-          }}></Button>
+        {appState === APPSTATE.DISTANCE && <DistanceCard />}
+        <>
+          {(Object.keys(whatButtonsToDisplay) as APPSTATE[])
+            .filter((state) => state === appState)
+            .map((state) => whatButtonsToDisplay[state])}
+        </>
         {rootController.loading && <Loading />}
       </SafeAreaView>
     </RootContext.Provider>
