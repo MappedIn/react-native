@@ -84,7 +84,9 @@ export const LocationCard = () => {
           if (nearestLocation != null) {
             setDeparture(nearestLocation.clone());
           }
-          setDestination(selectedLocation.clone());
+          if (selectedLocation != null) {
+            setDestination(selectedLocation.clone());
+          }
         }}></Button>
     </Card>
   );

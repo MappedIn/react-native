@@ -93,7 +93,7 @@ export const Map = ({options}: {options: TMiMapViewOptions}) => {
           setMapState(state);
         }}
         options={options}
-        onBlueDotUpdated={({update}) => {
+        onBlueDotPositionUpdated={({update}) => {
           const nearestNode = update.nearestNode;
           if (nearestNode != null) {
             const primaryLocation = nearestNode.locations[0];
