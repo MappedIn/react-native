@@ -1,8 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import {Button, Dimensions, Text, TouchableOpacity, View} from 'react-native';
 import {
-  IMappedinLocation,
-  IMappedinNode,
   MappedinLocation,
   MappedinNode,
 } from '@mappedin/react-native-sdk';
@@ -20,7 +18,7 @@ const LocationsPickerModal = ({
   locations,
   locationIdSelected,
 }: {
-  locations: IMappedinLocation[];
+  locations: MappedinLocation[];
   locationIdSelected: (id: string) => void;
 }) => {
   if (locations == null || locations.length === 0) {
@@ -377,13 +375,13 @@ export const Directions = () => {
               {
                 id: '-1',
                 name: 'Please select a location',
-              } as IMappedinLocation,
+              } as MappedinLocation,
               nearestLocation != null && {
                 id: nearestLocation?.id,
                 name: `[Your Location]${nearestLocation?.name}`,
               },
               ...venueData.locations,
-            ].filter((x) => x) as IMappedinLocation[]
+            ].filter((x) => x) as MappedinLocation[]
           }
           locationIdSelected={(locationId) => {
             if (editing === FIELD.DEPARTURE) {

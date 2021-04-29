@@ -1023,10 +1023,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@mappedin/react-native-sdk@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.npmjs.org/@mappedin/react-native-sdk/-/react-native-sdk-3.1.1.tgz#5b276fe915e5e6bc8b13599e91aa72a66b455bd9"
-  integrity sha512-VJCtwXle1gGsCaVzX66ReT8LDRXM7VmMyBUc+eEzGHEXWPg1c+KMbJ3h292Tp2uO3q4c/TeZtS/k6Kh7URPBKg==
+"@mappedin/react-native-sdk@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.npmjs.org/@mappedin/react-native-sdk/-/react-native-sdk-3.2.1.tgz#5e7b495f3d915840493e26bad1d495eebbfc9dc7"
+  integrity sha512-iG7lWNw4MLRTeIORlwcuhbqGCj7BfRPz2DttTIMIyYid4Yfdx1nywBwHiBawDhSgxGxiDxxbkFDf32rQWcsAKQ==
 
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"

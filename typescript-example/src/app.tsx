@@ -2,12 +2,11 @@ import React from 'react';
 import {Button, SafeAreaView} from 'react-native';
 import type {
   MapViewStore,
-  IMappedinLocation,
-  IMappedin,
-  IMappedinMap,
-  TMappedinDirections,
+  Mappedin,
+  MappedinMap,
+  MappedinDirections,
   TMiMapViewOptions,
-  IMappedinNode,
+  MappedinNode,
   MappedinLocation,
   MappedinPolygon,
 } from '@mappedin/react-native-sdk';
@@ -33,30 +32,30 @@ export enum APPSTATE {
 
 const useRootContext = () => {
   const [selectedMapId, setSelectedMapId] = React.useState<
-    IMappedinMap['id']
+    MappedinMap['id']
   >();
-  const [venueData, setVenue] = React.useState<IMappedin>();
+  const [venueData, setVenue] = React.useState<Mappedin>();
   const [
     selectedLocation,
     setSelectedLocation,
-  ] = React.useState<IMappedinLocation>();
+  ] = React.useState<MappedinLocation>();
   const mapView = React.useRef<MapViewStore>();
-  const [directions, setDirections] = React.useState<TMappedinDirections>();
+  const [directions, setDirections] = React.useState<MappedinDirections>();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [
     nearestLocation,
     setNearestLocation,
-  ] = React.useState<IMappedinLocation>();
+  ] = React.useState<MappedinLocation>();
   const [currentLevel, setCurrentLevel] = React.useState<
-    IMappedinMap['name']
+    MappedinMap['name']
   >();
 
   const [appState, setAppState] = React.useState<APPSTATE>(APPSTATE.HOME);
   const [departure, setDeparture] = React.useState<
-    IMappedinLocation | IMappedinNode
+    MappedinLocation | MappedinNode
   >();
   const [destination, setDestination] = React.useState<
-    IMappedinLocation | IMappedinNode
+    MappedinLocation | MappedinNode
   >();
   const [mapState, setMapState] = React.useState<STATE>(STATE.EXPLORE);
   const [mapDimensions, setMapDimensions] = React.useState({
@@ -112,24 +111,24 @@ const useRootContext = () => {
 
 export interface IRootContext {
   appState: APPSTATE;
-  departure: IMappedinLocation | IMappedinNode | undefined;
+  departure: MappedinLocation | MappedinNode | undefined;
   setDeparture: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
+    React.SetStateAction<MappedinLocation | MappedinNode | undefined>
   >;
   distancePoints: [MappedinPolygon | null, MappedinPolygon | null];
   setDistancePoints: React.Dispatch<
     React.SetStateAction<[MappedinPolygon | null, MappedinPolygon | null]>
   >;
-  destination: IMappedinLocation | IMappedinNode | undefined;
+  destination: MappedinLocation | MappedinNode | undefined;
   setDestination: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | IMappedinNode | undefined>
+    React.SetStateAction<MappedinLocation | MappedinNode | undefined>
   >;
   setAppState: React.Dispatch<React.SetStateAction<APPSTATE>>;
-  nearestLocation: IMappedinLocation | undefined;
-  directions: TMappedinDirections | undefined;
+  nearestLocation: MappedinLocation | undefined;
+  directions: MappedinDirections | undefined;
   mapView: React.MutableRefObject<MapViewStore | undefined>;
   selectedMapId: string | undefined;
-  venueData: IMappedin | undefined;
+  venueData: Mappedin | undefined;
   selectedLocation: MappedinLocation | undefined;
   loading: boolean;
   reset: () => void;
@@ -140,21 +139,21 @@ export interface IRootContext {
   mapState: STATE;
   setMapState: React.Dispatch<React.SetStateAction<STATE>>;
   options: React.MutableRefObject<TMiMapViewOptions>;
-  currentLevel: IMappedinMap['name'] | undefined;
+  currentLevel: MappedinMap['name'] | undefined;
   setCurrentLevel: React.Dispatch<
-    React.SetStateAction<IMappedinMap['name'] | undefined>
+    React.SetStateAction<MappedinMap['name'] | undefined>
   >;
   setNearestLocation: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | undefined>
+    React.SetStateAction<MappedinLocation | undefined>
   >;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setDirections: React.Dispatch<
-    React.SetStateAction<TMappedinDirections | undefined>
+    React.SetStateAction<MappedinDirections | undefined>
   >;
   setSelectedMapId: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setVenue: React.Dispatch<React.SetStateAction<IMappedin | undefined>>;
+  setVenue: React.Dispatch<React.SetStateAction<Mappedin | undefined>>;
   setSelectedLocation: React.Dispatch<
-    React.SetStateAction<IMappedinLocation | undefined>
+    React.SetStateAction<MappedinLocation | undefined>
   >;
 }
 

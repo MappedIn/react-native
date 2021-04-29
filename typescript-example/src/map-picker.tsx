@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import type { IMappedinMap } from '@mappedin/react-native-sdk';
+import type { MappedinMap } from '@mappedin/react-native-sdk';
 import { Picker } from '@react-native-picker/picker';
 import { RootContext } from './app';
 
@@ -32,7 +32,7 @@ export const MapPicker = () => {
         right: 10,
       }}
       onValueChange={(itemValue) => {
-        mapView.current?.setMap(itemValue as IMappedinMap['id']);
+        mapView.current?.setMap(itemValue as MappedinMap['id']);
       }}
     >
       {venueData.maps.map((m) => (
