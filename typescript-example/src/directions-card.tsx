@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {Button, Dimensions, Text, TouchableOpacity, View} from 'react-native';
 import {
+  MappedinDirections,
   MappedinLocation,
   MappedinNode,
 } from '@mappedin/react-native-sdk';
@@ -101,7 +102,7 @@ export const Directions = () => {
         const directions = await mapView.current?.getDirections({
           from: departure!,
           to: destination!,
-        });
+        }) as MappedinDirections;
 
         if (directions == null || directions.path.length === 0) {
           console.log('Unable to navigate');
@@ -109,7 +110,9 @@ export const Directions = () => {
           return;
         }
 
-        await mapView.current?.drawJourney(directions, {
+        const startMap = directions.path[0].map;
+
+        await mapView.current?.Journey.draw(directions, {
           pathOptions: {
             displayArrowsOnPath: true,
             nearRadius: 10,
@@ -149,12 +152,12 @@ export const Directions = () => {
         // </div>`,
         // });
         await mapView.current?.setMap(
-          venueData?.maps.find((m) => m.id === directions?.path[0].map)!,
+          venueData?.maps.find((m) => m.id === startMap)!,
         );
         await mapView.current?.focusOn({
           // @ts-ignore
           nodes: directions.path
-            .filter((n) => n.map === directions?.path[0].map)
+            .filter((n) => n.map === startMap)
             .map((n) => n.id),
           minZoom: 1500,
           tilt: 0.1,
