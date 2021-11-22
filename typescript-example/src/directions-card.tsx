@@ -115,8 +115,6 @@ export const Directions = () => {
         await mapView.current?.Journey.draw(directions, {
           pathOptions: {
             displayArrowsOnPath: true,
-            nearRadius: 10,
-            farRadius: 30,
             color: 'green',
           },
         });

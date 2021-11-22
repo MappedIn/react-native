@@ -1023,10 +1023,12 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@mappedin/react-native-sdk@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-3.5.1.tgz#91ac82247efb4a319c176441fb5c361a575899d2"
-  integrity sha512-ou9GbYRRm/H8I8SdQy6bYEfqfpa/amqOxEmdjPd2ei16bsOQPUpxil+ox94lDwUIfAgFjONUlySuUVEYy5wqSw==
+"@mappedin/react-native-sdk@4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-4.0.6.tgz#deeb576ad3c0925fa1d9a4fc554a7083055d63e6"
+  integrity sha512-uT614DirxNntOt8YNV5tCWGmJSB5I0OCgRz6BgDGEKpPn/29DNFOxi+LH3lku3K1ECDytymtuOVhn4LumNVcvQ==
+  dependencies:
+    react-native-webview "^11.13.0"
 
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
@@ -5790,6 +5792,14 @@ react-native-svg@^12.1.0:
   dependencies:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
+
+react-native-webview@^11.13.0:
+  version "11.14.3"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.14.3.tgz#31da92b8fd21f4d1192e057867478598153a6f5d"
+  integrity sha512-y/+7mE6by/uLGSIVmlp1xpJvL37rAuOL90EWTJYKZWL5iM8lN+pQkj/zwcPcGu4zNmuHdXXUk/cMR8hE89mNYg==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
 
 react-native-webview@^11.2.1:
   version "11.3.2"
