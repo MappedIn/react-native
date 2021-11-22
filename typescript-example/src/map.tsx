@@ -31,19 +31,21 @@ export const Map = ({options}: {options: TMiMapViewOptions}) => {
   useEffect(() => {
     async function setMap() {
       if (directions != null) {
-        await mapView.current?.focusOn({
-          // @ts-ignore
-          nodes: directions.path
-            .filter((n) => n.map === selectedMapId)
-            .map((n) => n.id),
-          minZoom: 1500,
-          tilt: 0.1,
-          padding: {
-            top: 40,
-            left: 40,
-            right: 40,
-            bottom: 250,
+        await mapView.current?.Camera.focusOn({
+          targets: {
+            nodes: directions.path
+              .filter((n) => n.map === selectedMapId)
           },
+          cameraOptions: {
+            minZoom: 1500,
+            tilt: 0.1,
+            safeAreaInsets: {
+              top: 40,
+              left: 40,
+              right: 40,
+              bottom: 250,
+            },
+          }
         });
       } else if (
         selectedMapId != null &&
@@ -53,10 +55,12 @@ export const Map = ({options}: {options: TMiMapViewOptions}) => {
           await mapView.current?.setMap(selectedMapId);
         }
         if (directions == null) {
-          await mapView.current?.focusOn({
-            polygons: venueData?.polygons.filter(
-              (p) => p.map === selectedMapId,
-            ),
+          await mapView.current?.Camera.focusOn({
+            targets: {
+              polygons: venueData?.polygons.filter(
+                (p) => p.map === selectedMapId,
+              ),
+            }
           });
         }
       }
