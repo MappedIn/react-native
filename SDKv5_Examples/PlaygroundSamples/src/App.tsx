@@ -34,6 +34,7 @@ import ListCategories from './examples/ListCategories';
 import ListLocations from './examples/ListLocations';
 import Markers from './examples/Markers';
 import RenderMap from './examples/RenderMap';
+import Search from './examples/Search';
 
 export type RootStackParams = {
   Home: undefined;
@@ -46,6 +47,7 @@ export type RootStackParams = {
   'List categories': undefined;
   'A-B wayfinding': undefined;
   'Camera controls': undefined;
+  Search: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParams>();
@@ -123,6 +125,11 @@ const BasicView = ({
             onPress={() => navigation.navigate('Level selector')}>
             Add a level selector
           </ExampleLink>
+          <ExampleLink
+            title="Search"
+            onPress={() => navigation.navigate('Search')}>
+            Search locations within a venue
+          </ExampleLink>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -182,6 +189,11 @@ const App = () => {
           name="List categories"
           component={ListCategories}
           options={{title: 'Categories list'}}
+        />
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{title: 'Search'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
