@@ -35,12 +35,14 @@ import ListLocations from './examples/ListLocations';
 import Markers from './examples/Markers';
 import RenderMap from './examples/RenderMap';
 import Search from './examples/Search';
+import Tooltips from './examples/Tooltips';
 
 export type RootStackParams = {
   Home: undefined;
   'Add interactivity': undefined;
   'Render map': undefined;
   Markers: undefined;
+  Tooltips: undefined;
   'Level selector': undefined;
   'Blue Dot onClick': undefined;
   'List locations': undefined;
@@ -94,6 +96,11 @@ const BasicView = ({
             title="Markers"
             onPress={() => navigation.navigate('Markers')}>
             Adding HTML markers to the map view
+          </ExampleLink>
+          <ExampleLink
+            title="Tooltips"
+            onPress={() => navigation.navigate('Tooltips')}>
+            Adding clickable HTML tooltips to the map view
           </ExampleLink>
           <ExampleLink
             title="A-B navigation"
@@ -159,6 +166,11 @@ const App = () => {
           name="Markers"
           component={Markers}
           options={{title: 'Markers'}}
+        />
+        <Stack.Screen
+          name="Tooltips"
+          component={Tooltips}
+          options={{title: 'Tooltips'}}
         />
         <Stack.Screen
           name="A-B wayfinding"
