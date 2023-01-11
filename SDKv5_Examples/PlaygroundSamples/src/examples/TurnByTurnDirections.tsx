@@ -31,11 +31,7 @@ const DirectionsFlatList = ({directions}: {directions: MappedinDirections}) => {
 
   return (
     directions && (
-      <FlatList
-        data={directions.instructions}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => `${index}`}
-      />
+      <FlatList data={directions.instructions} renderItem={renderItem} />
     )
   );
 };
@@ -43,7 +39,7 @@ const DirectionsFlatList = ({directions}: {directions: MappedinDirections}) => {
 const TurnByTurnDirections = () => {
   const mapView = useRef<MapViewStore>(null);
   const [activeDirections, setActiveDirections] =
-    useState<MappedinDirections | null>(null);
+    useState<MappedinDirections>(null);
 
   return (
     <SafeAreaView style={styles.fullSafeAreaView}>
