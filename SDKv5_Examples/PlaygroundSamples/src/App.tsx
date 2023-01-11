@@ -36,6 +36,7 @@ import Markers from './examples/Markers';
 import RenderMap from './examples/RenderMap';
 import Search from './examples/Search';
 import Tooltips from './examples/Tooltips';
+import TurnByTurnDirections from './examples/TurnByTurnDirections';
 
 export type RootStackParams = {
   Home: undefined;
@@ -49,6 +50,7 @@ export type RootStackParams = {
   'List categories': undefined;
   'A-B wayfinding': undefined;
   'Camera controls': undefined;
+  'Turn-by-turn directions': undefined;
   Search: undefined;
 };
 
@@ -133,6 +135,11 @@ const BasicView = ({
             Add a level selector
           </ExampleLink>
           <ExampleLink
+            title="Turn-by-turn directions"
+            onPress={() => navigation.navigate('Turn-by-turn directions')}>
+            Display text-based turn-by-turn directions
+          </ExampleLink>
+          <ExampleLink
             title="Search"
             onPress={() => navigation.navigate('Search')}>
             Search locations within a venue
@@ -201,6 +208,11 @@ const App = () => {
           name="List categories"
           component={ListCategories}
           options={{title: 'Categories list'}}
+        />
+        <Stack.Screen
+          name="Turn-by-turn directions"
+          component={TurnByTurnDirections}
+          options={{title: 'Turn-by-Turn Directions'}}
         />
         <Stack.Screen
           name="Search"
