@@ -1059,9 +1059,9 @@
     "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@mappedin/react-native-sdk@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-5.0.3.tgz#48ef24f6b133550a5815117213f128e7c2e28814"
-  integrity sha512-NnU18bhppic/LkIwCtXLUK2OE5MtxZaoBsncgCuxdOGxCdbm2ag2HCFGAcC+a/qgKdKx1vkhXDCltBoPo8jN0Q==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-5.1.2.tgz#27260e1a358dd12b4e14f0f9703435f6f5632437"
+  integrity sha512-lktZqmR+gGc5WpA0e/3P810b/t8IXW83AsCOiRvFu0D65I6yF/Izf2R2x1ywKWpM4izUnPesQlfrfvX4hiqXpQ==
   dependencies:
     react-native-webview "^11.13.0"
 
@@ -5772,7 +5772,15 @@ react-native-screens@^3.18.2:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-webview@^11.13.0, react-native-webview@^11.26.0:
+react-native-webview@^11.13.0:
+  version "11.26.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.26.1.tgz#658c09ed5162dc170b361e48c2dd26c9712879da"
+  integrity sha512-hC7BkxOpf+z0UKhxFSFTPAM4shQzYmZHoELa6/8a/MspcjEP7ukYKpuSUTLDywQditT8yI9idfcKvfZDKQExGw==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
+
+react-native-webview@^11.26.0:
   version "11.26.0"
   resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.26.0.tgz#e524992876fe4a79e69905f0fab8949b470e9f16"
   integrity sha512-4T4CKRm8xlaQDz9h/bCMPGAvtkesrhkRWqCX9FDJEzBToaVUIsV0ZOqtC4w/JSnCtFKKYiaC1ReJtCGv+4mFeQ==
