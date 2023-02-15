@@ -40,7 +40,10 @@ const labelTypes = [
 
 const Labels = () => {
   const mapView = useRef<MapViewStore>(null);
-  const [selectedLabelType, setSelectedLabelType] = useState<number>(0);
+  const [selectedLabelType, setSelectedLabelType] = useState<string>(
+    labelTypes[0],
+  );
+
   const LabelPicker = () => {
     return (
       <Picker
@@ -50,15 +53,15 @@ const Labels = () => {
           setSelectedLabelType(labelType);
 
           switch (labelType) {
-            case 0:
+            case labelTypes[0]:
               mapView.current?.FlatLabels.removeAll();
               mapView.current?.FloatingLabels.removeAll();
               mapView.current?.FloatingLabels.labelAllLocations();
               break;
-            case 1:
+            case labelTypes[1]:
               mapView.current?.FlatLabels.removeAll();
               mapView.current?.FloatingLabels.removeAll();
-              mapView.current?.venueData.categories.forEach(
+              mapView.current?.venueData?.categories.forEach(
                 (category: MappedinCategory, index: number) => {
                   category.locations.forEach((location: MappedinLocation) => {
                     if (location.polygons.length <= 0) {
@@ -84,18 +87,18 @@ const Labels = () => {
                 },
               );
               break;
-            case 2:
+            case labelTypes[2]:
               mapView.current?.FlatLabels.removeAll();
               mapView.current?.FloatingLabels.removeAll();
               mapView.current?.FlatLabels.labelAllLocations();
               break;
-            case 3:
+            case labelTypes[3]:
               mapView.current?.FlatLabels.removeAll();
               mapView.current?.FloatingLabels.removeAll();
               mapView.current?.FlatLabels.labelAllLocations({
                 appearance: {
                   font: 'Georgia',
-                  fontSize: 16,
+                  fontSize: 14,
                   color: '#1c1c43',
                 },
               });
@@ -105,7 +108,7 @@ const Labels = () => {
           }
         }}>
         {labelTypes.map((labelType, index) => (
-          <Picker.Item key={index} label={labelType} value={index} />
+          <Picker.Item key={index} label={labelType} value={labelType} />
         ))}
       </Picker>
     );
