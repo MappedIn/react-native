@@ -1059,9 +1059,9 @@
     "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@mappedin/react-native-sdk@^5.0.3":
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-5.1.2.tgz#27260e1a358dd12b4e14f0f9703435f6f5632437"
-  integrity sha512-lktZqmR+gGc5WpA0e/3P810b/t8IXW83AsCOiRvFu0D65I6yF/Izf2R2x1ywKWpM4izUnPesQlfrfvX4hiqXpQ==
+  version "5.1.5"
+  resolved "https://npm.pkg.github.com/download/@MappedIn/react-native-sdk/5.1.5/4591c749160d7f8bfc0841e5f08321f15af4a916#4591c749160d7f8bfc0841e5f08321f15af4a916"
+  integrity sha512-zgAxJ0wEu8qkIA+mMtLDut0JGuUBNcRziaZRwYlndYrbNu+hKrQGzP1CppMNOM0sTBrv+fXzboRH3dX7hywCNw==
   dependencies:
     react-native-webview "^11.13.0"
 
