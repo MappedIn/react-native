@@ -1060,7 +1060,7 @@
 
 "@mappedin/react-native-sdk@^5.0.3":
   version "5.1.5"
-  resolved "https://npm.pkg.github.com/download/@MappedIn/react-native-sdk/5.1.5/4591c749160d7f8bfc0841e5f08321f15af4a916#4591c749160d7f8bfc0841e5f08321f15af4a916"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-5.1.5.tgz#4591c749160d7f8bfc0841e5f08321f15af4a916"
   integrity sha512-zgAxJ0wEu8qkIA+mMtLDut0JGuUBNcRziaZRwYlndYrbNu+hKrQGzP1CppMNOM0sTBrv+fXzboRH3dX7hywCNw==
   dependencies:
     react-native-webview "^11.13.0"
