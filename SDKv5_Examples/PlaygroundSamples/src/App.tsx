@@ -36,12 +36,14 @@ import Markers from './examples/Markers';
 import RenderMap from './examples/RenderMap';
 import Search from './examples/Search';
 import Tooltips from './examples/Tooltips';
+import Labels from './examples/Labels';
 import TurnByTurnDirections from './examples/TurnByTurnDirections';
 
 export type RootStackParams = {
   Home: undefined;
   'Add interactivity': undefined;
   'Render map': undefined;
+  Labels: undefined;
   Markers: undefined;
   Tooltips: undefined;
   'Level selector': undefined;
@@ -93,6 +95,11 @@ const BasicView = ({
             onPress={() => navigation.navigate('Add interactivity')}>
             Make locations clickable with{' '}
             <Text style={styles.inlineCode}>onClick</Text> -callback
+          </ExampleLink>
+          <ExampleLink
+            title="Labels"
+            onPress={() => navigation.navigate('Labels')}>
+            Adding Flat or Floating Labels to your locations
           </ExampleLink>
           <ExampleLink
             title="Markers"
@@ -168,6 +175,11 @@ const App = () => {
           name="Add interactivity"
           component={AddInteractivity}
           options={{title: 'Adding interactivity'}}
+        />
+        <Stack.Screen
+          name="Labels"
+          component={Labels}
+          options={{title: 'Labels'}}
         />
         <Stack.Screen
           name="Markers"
