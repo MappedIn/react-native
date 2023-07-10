@@ -64,7 +64,13 @@ const Search = () => {
     generateSearchResults();
   }, [searchQuery]);
 
-  const handlePress = (location: MappedinLocation) => {
+  const handlePress = async (location: MappedinLocation) => {
+    const floor = location.polygons[0].map;
+
+    //Switch to the appropriate floor if it is not currently displayed.
+    if (floor.id !== mapView.current?.currentMap?.id) {
+      await mapView.current?.setMap(floor);
+    }
     mapView.current?.clearAllPolygonColors();
     mapView.current?.setPolygonColor(location.polygons[0], 'red');
     mapView.current?.Camera.focusOn({polygons: location.polygons});
