@@ -26,13 +26,6 @@ const Tooltips = () => {
         ref={mapView}
         options={venueOptions}
         onFirstMapLoaded={() => {
-          mapView.current?.Camera.set({
-            position: mapView.current?.currentMap?.createCoordinate(
-              43.52080783999876,
-              -80.53909680942026,
-            ),
-            zoom: 1871,
-          });
           const departure: MappedinLocation =
             mapView.current?.venueData?.locations.find(
               (l: MappedinLocation) => l.name === 'Cleo',
@@ -41,13 +34,20 @@ const Tooltips = () => {
             mapView.current?.venueData?.locations.find(
               (l: MappedinLocation) => l.name === 'Pandora',
             );
+
           if (!departure || !destination) {
             return;
           }
           const directions: MappedinDirections =
             departure?.directionsTo(destination);
           if (directions) {
-            mapView.current?.drawPath(directions.path, {});
+            mapView.current?.Camera.focusOn({
+              nodes: directions.path,
+            });
+            mapView.current?.Paths.add(directions.path, {
+              farRadius: 2,
+              nearRadius: 2,
+            });
             directions.instructions.forEach(
               (instruction: TMappedinDirective) => {
                 mapView.current?.createTooltip(

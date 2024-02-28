@@ -50,7 +50,7 @@ const TurnByTurnDirections = () => {
         options={venueOptions}
         onFirstMapLoaded={() => {
           const departure = mapView.current?.venueData?.locations.find(
-            (l: MappedinLocation) => l.name === 'Pet World',
+            (l: MappedinLocation) => l.name === 'Uniqlo',
           );
           const destination = mapView.current?.venueData?.locations.find(
             (l: MappedinLocation) => l.name === 'Microsoft',
