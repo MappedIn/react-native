@@ -12,6 +12,7 @@ import {
   useMap,
   useEvent,
   Label,
+  Mappedin,
 } from "@mappedin/react-native-sdk";
 
 const icon1 = `<svg width="92" height="92" viewBox="-17 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +95,7 @@ const MapSetup = () => {
   useEvent("click", clickCallback);
 
   // Handle camera changes for zoom-based label visibility
-  useEvent("camera-change", (transform: any) => {
+  useEvent("camera-change", (transform: Mappedin.CameraTransform) => {
     if (transform.zoomLevel < 20) {
       setSecondaryLabelsEnabled(false);
     } else {
@@ -108,15 +109,15 @@ const MapSetup = () => {
       const allSpaces = mapData.getByType("space");
 
       const sirens = allSpaces.find(
-        (space: any) =>
+        (space: Mappedin.Space) =>
           space.name && space.name.toLowerCase().includes("sirens")
       );
       const sbarro = allSpaces.find(
-        (space: any) =>
+        (space: Mappedin.Space) =>
           space.name && space.name.toLowerCase().includes("sbarro")
       );
       const urbanPlanet = allSpaces.find(
-        (space: any) =>
+        (space: Mappedin.Space) =>
           space.name && space.name.toLowerCase().includes("urban planet")
       );
 
@@ -126,13 +127,13 @@ const MapSetup = () => {
 
       // Set up primary and secondary labels
       const spacesWithNames = allSpaces.filter(
-        (space: any) => space.name !== ""
+        (space: Mappedin.Space) => space.name !== ""
       );
 
       // Primary labels (first 8 spaces)
       primaryLabels.length = 0;
       primaryLabels.push(
-        ...spacesWithNames.slice(0, 8).map((space: any) => ({
+        ...spacesWithNames.slice(0, 8).map((space: Mappedin.Space) => ({
           target: space,
           text: `📍 ${space.name}`,
           options: {
@@ -146,7 +147,7 @@ const MapSetup = () => {
       // Secondary labels (next 10 spaces)
       secondaryLabels.length = 0;
       secondaryLabels.push(
-        ...spacesWithNames.slice(8, 18).map((space: any) => ({
+        ...spacesWithNames.slice(8, 18).map((space: Mappedin.Space) => ({
           target: space,
           text: `🏪 ${space.name}`,
           options: {
