@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, View, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { Link } from "expo-router";
-import {
-  MapView as MappedInView,
-  useMap,
-} from "@mappedin/react-native-sdk";
+import { MapView as MappedInView, useMap } from "@mappedin/react-native-sdk";
 
 export interface MapViewProps {
   style?: ViewStyle;
@@ -12,6 +9,7 @@ export interface MapViewProps {
   onMapReady?: () => void;
   onError?: (error: string) => void;
   children?: React.ReactNode;
+  options?: any;
 }
 
 export interface MapViewRef {
@@ -45,7 +43,7 @@ const MapSetup = () => {
 };
 
 const MapView = React.forwardRef<MapViewRef, MapViewProps>(
-  ({ style, mapId: venue, onMapReady, onError, children }, ref) => {
+  ({ style, mapId: venue, onMapReady, onError, children, options }, ref) => {
     React.useEffect(() => {}, [venue, onMapReady, onError]);
 
     // See Demo API key Terms and Conditions
@@ -53,7 +51,7 @@ const MapView = React.forwardRef<MapViewRef, MapViewProps>(
     return (
       <View style={[mapStyles.container, style]}>
         <MappedInView
-          options={{}}
+          options={options || {}}
           mapData={{
             key: "mik_yeBk0Vf0nNJtpesfu560e07e5",
             secret: "mis_2g9ST8ZcSFb5R9fPnsvYhrX3RyRwPtDGbMGweCYKEq385431022",
@@ -119,6 +117,9 @@ export default function BasicMapView() {
           mapId="mappedin-demo-mall"
           onMapReady={handleMapReady}
           onError={handleMapError}
+          options={{
+            initialFloor: "m_123456789",
+          }}
         />
       </View>
 

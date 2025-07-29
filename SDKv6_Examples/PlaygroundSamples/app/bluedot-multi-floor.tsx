@@ -9,7 +9,11 @@ import {
   Alert,
 } from "react-native";
 import { Link } from "expo-router";
-import { MapView as MappedInView, useMap } from "@mappedin/react-native-sdk";
+import {
+  Mappedin,
+  MapView as MappedInView,
+  useMap,
+} from "@mappedin/react-native-sdk";
 // @ts-ignore
 import positions from "./multi-floor-positions.json";
 
@@ -135,28 +139,31 @@ const BlueDotMultiFloorSetup = ({
         },
       });
 
-      mapView.on("blue-dot-position-update", (event: any) => {
-        const isEqual = mapView.BlueDot.coordinate?.isEqual(event.coordinate);
-        console.log("blue-dot-position-update assertion:", isEqual, {
-          event: { coordinate: event.coordinate },
-          cached: { coordinate: mapView.BlueDot.coordinate },
-        });
+      mapView.on(
+        "blue-dot-position-update",
+        (event: Mappedin.TBlueDotEvents) => {
+          const isEqual = mapView.BlueDot.coordinate?.isEqual(event.coordinate);
+          console.log("blue-dot-position-update assertion:", isEqual, {
+            event: { coordinate: event.coordinate },
+            cached: { coordinate: mapView.BlueDot.coordinate },
+          });
 
-        // Update assertion status based on coordinate equality check
-        if (isEqual) {
-          onAssertionTestUpdate(
-            "Position Update",
-            "success",
-            "✅ Position caching works! Event coordinate matches cached coordinate"
-          );
-        } else {
-          onAssertionTestUpdate(
-            "Position Update",
-            "failed",
-            `❌ Position caching failed! Coordinates don't match`
-          );
+          // Update assertion status based on coordinate equality check
+          if (isEqual) {
+            onAssertionTestUpdate(
+              "Position Update",
+              "success",
+              "✅ Position caching works! Event coordinate matches cached coordinate"
+            );
+          } else {
+            onAssertionTestUpdate(
+              "Position Update",
+              "failed",
+              `❌ Position caching failed! Coordinates don't match`
+            );
+          }
         }
-      });
+      );
 
       mapView.on("blue-dot-follow-change", (event: any) => {
         const isEqual = event.following === mapView.BlueDot.following;

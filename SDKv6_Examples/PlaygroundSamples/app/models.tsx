@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { Link } from "expo-router";
+import { Asset } from "expo-asset";
+import * as FileSystem from "expo-file-system";
 import {
   MapView as MappedInView,
   useMap,
@@ -13,10 +15,48 @@ const MapSetup = () => {
   const { mapData, mapView } = useMap();
   const [modelStates, setModelStates] = useState<any[]>([]);
   const [modelStateIdMap, setMap] = useState<Record<string, any>>({});
+  const [duckModelUrl, setDuckModelUrl] = useState<string | null>(null);
   const selectedModel = useRef<any>(null);
+
+  // Load duck model from local asset
+  useEffect(() => {
+    const loadDuckModel = async () => {
+      try {
+        console.log("🦆 Loading duck model from local asset");
+
+        // Load the local duck.glb file
+        const localAsset = Asset.fromModule(require("../assets/duck.glb"));
+        await localAsset.downloadAsync();
+
+        if (!localAsset.localUri) {
+          throw new Error("Local duck asset URI not available");
+        }
+
+        console.log("🦆 Reading duck model as base64...");
+        const base64 = await FileSystem.readAsStringAsync(localAsset.localUri, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+
+        // Create data URI for the model
+        const dataUri = `data:application/octet-stream;base64,${base64}`;
+        setDuckModelUrl(dataUri);
+        console.log("✅ Duck model loaded successfully from local asset");
+      } catch (err) {
+        console.error("💥 Error loading duck model from local asset:", err);
+        // Fallback to remote URL if local loading fails
+        setDuckModelUrl(
+          "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb"
+        );
+      }
+    };
+
+    loadDuckModel();
+  }, []);
 
   // Initialize models when mapData is available
   useEffect(() => {
+    if (!mapData || !mapView) return;
+
     const allSpaces = mapData.getByType("space");
 
     // Take first 8 spaces to avoid cluttering the map
@@ -103,6 +143,15 @@ const MapSetup = () => {
 
   useEvent("click", clickCallback);
 
+  // Don't render models until duck model URL is loaded
+  if (!duckModelUrl) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Loading duck model... 🦆</Text>
+      </View>
+    );
+  }
+
   // See Demo API key Terms and Conditions
   // Demo Key & Maps: https://developer.mappedin.com/docs/demo-keys-and-maps
   return (
@@ -112,7 +161,7 @@ const MapSetup = () => {
         <Model
           key={modelState.id}
           target={modelState.target}
-          url={require("../assets/duck.glb")}
+          url={duckModelUrl}
           options={{
             scale: modelState.scale,
             color: modelState.color,
@@ -150,7 +199,8 @@ export default function ModelsExample() {
         <Text style={styles.title}>🦆 3D Models</Text>
         <Text style={styles.description}>
           This example demonstrates how to place interactive 3D models on the
-          map that can be selected and moved.
+          map that can be selected and moved. Models are loaded from local
+          assets for better performance and offline capabilities.
         </Text>
       </View>
 
@@ -219,7 +269,14 @@ export default function ModelsExample() {
         <View style={styles.featureItem}>
           <Text style={styles.featureBullet}>•</Text>
           <Text style={styles.featureText}>
-            Loading 3D models from external URLs (Duck.glb)
+            Loading 3D models from local assets (Duck.glb)
+          </Text>
+        </View>
+
+        <View style={styles.featureItem}>
+          <Text style={styles.featureBullet}>•</Text>
+          <Text style={styles.featureText}>
+            Converting local assets to base64 data URIs for model loading
           </Text>
         </View>
 
