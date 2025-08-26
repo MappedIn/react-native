@@ -105,6 +105,14 @@ const navigationItems: NavigationItem[] = [
     color: "#5856D6",
     icon: "🔵",
   },
+  {
+    title: "Location Categories",
+    description:
+      "Display location categories and profiles in a hierarchical grid layout",
+    route: "/location-categories" as any,
+    color: "#10B981",
+    icon: "🏪",
+  },
 ];
 
 const SEARCH_QUERY_KEY = "@mappedin_search_query";
