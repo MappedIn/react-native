@@ -6,10 +6,10 @@ import * as FileSystem from "expo-file-system";
 import {
   MapView as MappedInView,
   useMap,
-  useEvent,
+  useMapViewEvent,
   Model,
-  Mappedin,
 } from "@mappedin/react-native-sdk";
+import type Mappedin from "@mappedin/mappedin-js";
 
 const MapSetup = () => {
   const { mapData, mapView } = useMap();
@@ -43,10 +43,6 @@ const MapSetup = () => {
         console.log("✅ Duck model loaded successfully from local asset");
       } catch (err) {
         console.error("💥 Error loading duck model from local asset:", err);
-        // Fallback to remote URL if local loading fails
-        setDuckModelUrl(
-          "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb"
-        );
       }
     };
 
@@ -114,6 +110,7 @@ const MapSetup = () => {
       } else if (selectedModel.current && payload.coordinate) {
         // Clicked on empty space with a model selected - move the selected model
         const targetCoordinate = payload.coordinate;
+        console.log("New position:", targetCoordinate);
         console.log(
           "Moving selected model to:",
           selectedModel.current.id,
@@ -141,7 +138,7 @@ const MapSetup = () => {
     [modelStateIdMap]
   );
 
-  useEvent("click", clickCallback);
+  useMapViewEvent("click", clickCallback);
 
   // Don't render models until duck model URL is loaded
   if (!duckModelUrl) {
@@ -160,7 +157,7 @@ const MapSetup = () => {
       {modelStates.map((modelState) => (
         <Model
           key={modelState.id}
-          target={modelState.target}
+          target={modelState.position}
           url={duckModelUrl}
           options={{
             scale: modelState.scale,
@@ -173,7 +170,7 @@ const MapSetup = () => {
             console.log("Model loaded:", {
               id: model.id,
               spaceName: modelState.spaceName,
-              position: model.position,
+              target: model.position,
             });
             setMap((prev) => ({
               ...prev,

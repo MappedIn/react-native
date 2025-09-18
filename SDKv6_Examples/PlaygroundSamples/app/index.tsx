@@ -74,6 +74,14 @@ const navigationItems: NavigationItem[] = [
     icon: "🧭",
   },
   {
+    title: "Dynamic Focus",
+    description:
+      "Advanced indoor mapping with intelligent focus management and interactive controls",
+    route: "/dynamic-focus",
+    color: "#8E44AD",
+    icon: "🎯",
+  },
+  {
     title: "Paths",
     description:
       "Display navigation paths between spaces with interactive controls",
@@ -105,6 +113,13 @@ const navigationItems: NavigationItem[] = [
     color: "#5856D6",
     icon: "🔵",
   },
+	{
+		title: 'Offline Map',
+		description: 'Load and display a map from a local MVF file bundled with the app, enabling offline functionality',
+		route: '/offline',
+		color: '#6B7280',
+		icon: '💾',
+	},  
   {
     title: "Location Categories",
     description:

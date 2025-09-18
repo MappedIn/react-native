@@ -10,10 +10,10 @@ import { Link } from "expo-router";
 import {
   MapView as MappedInView,
   useMap,
-  useEvent,
+  useMapViewEvent,
   Label,
-  Mappedin,
 } from "@mappedin/react-native-sdk";
+import type Mappedin from "@mappedin/mappedin-js";
 
 const icon1 = `<svg width="92" height="92" viewBox="-17 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<g clip-path="url(#clip0)">
@@ -92,10 +92,10 @@ const MapSetup = () => {
   );
 
   // Handle map clicks for label selection and moveable label positioning
-  useEvent("click", clickCallback);
+  useMapViewEvent("click", clickCallback);
 
   // Handle camera changes for zoom-based label visibility
-  useEvent("camera-change", (transform: Mappedin.CameraTransform) => {
+  useMapViewEvent("camera-change", (transform: Mappedin.CameraTransform) => {
     if (transform.zoomLevel < 20) {
       setSecondaryLabelsEnabled(false);
     } else {
@@ -224,22 +224,14 @@ const MapSetup = () => {
             interactive: true,
             rank: sirensRankOptions[sirensRankIndex],
             appearance: {
-              text: {
-                foregroundColor:
-                  clickedLabel?.target?.id === sirenSpace.id
-                    ? "#E91E63"
-                    : "#333",
-              },
-              marker: {
-                foregroundColor: {
-                  active:
-                    clickedLabel?.target?.id === sirenSpace.id
-                      ? "#E91E63"
-                      : "#4CAF50",
-                  inactive: "#999",
-                },
-                icon: icon1,
-              },
+              textColor:
+                clickedLabel?.target?.id === sirenSpace.id ? "#E91E63" : "#333",
+              pinColor:
+                clickedLabel?.target?.id === sirenSpace.id
+                  ? "#E91E63"
+                  : "#4CAF50",
+              pinColorInactive: "#999",
+              icon: icon1,
             },
           }}
           onLoad={(label) => {
@@ -259,22 +251,16 @@ const MapSetup = () => {
             interactive: true,
             rank: "always-visible",
             appearance: {
-              text: {
-                foregroundColor:
-                  clickedLabel?.target?.id === sbarroSpace.id
-                    ? "#FF6B35"
-                    : "#333",
-              },
-              marker: {
-                foregroundColor: {
-                  active:
-                    clickedLabel?.target?.id === sbarroSpace.id
-                      ? "#FF6B35"
-                      : "#2196F3",
-                  inactive: "#999",
-                },
-                icon: icon1,
-              },
+              textColor:
+                clickedLabel?.target?.id === sbarroSpace.id
+                  ? "#FF6B35"
+                  : "#333",
+              pinColor:
+                clickedLabel?.target?.id === sbarroSpace.id
+                  ? "#FF6B35"
+                  : "#2196F3",
+              pinColorInactive: "#999",
+              icon: icon1,
             },
           }}
           onLoad={(label) => {
@@ -293,22 +279,16 @@ const MapSetup = () => {
             interactive: true,
             rank: "always-visible",
             appearance: {
-              text: {
-                foregroundColor:
-                  clickedLabel?.target?.id === moveableLabelTarget.id
-                    ? "#9C27B0"
-                    : "#333",
-              },
-              marker: {
-                foregroundColor: {
-                  active:
-                    clickedLabel?.target?.id === moveableLabelTarget.id
-                      ? "#9C27B0"
-                      : "#FF9800",
-                  inactive: "#999",
-                },
-                icon: icon1,
-              },
+              textColor:
+                clickedLabel?.target?.id === moveableLabelTarget.id
+                  ? "#9C27B0"
+                  : "#333",
+              pinColor:
+                clickedLabel?.target?.id === moveableLabelTarget.id
+                  ? "#9C27B0"
+                  : "#FF9800",
+              pinColorInactive: "#999",
+              icon: icon1,
             },
           }}
           onLoad={(label) => {
@@ -331,22 +311,16 @@ const MapSetup = () => {
           options={{
             ...labelData.options,
             appearance: {
-              text: {
-                foregroundColor:
-                  clickedLabel?.target?.id === labelData.target.id
-                    ? "#f44336"
-                    : "#666",
-              },
-              marker: {
-                foregroundColor: {
-                  active:
-                    clickedLabel?.target?.id === labelData.target.id
-                      ? "#f44336"
-                      : "#607D8B",
-                  inactive: "#999",
-                },
-                icon: icon1,
-              },
+              textColor:
+                clickedLabel?.target?.id === labelData.target.id
+                  ? "#f44336"
+                  : "#666",
+              pinColor:
+                clickedLabel?.target?.id === labelData.target.id
+                  ? "#f44336"
+                  : "#607D8B",
+              pinColorInactive: "#999",
+              icon: icon1,
             },
             rank:
               clickedLabel?.target?.id === labelData.target.id
@@ -370,22 +344,16 @@ const MapSetup = () => {
             ...labelData.options,
             enabled: secondaryLabelsEnabled,
             appearance: {
-              text: {
-                foregroundColor:
-                  clickedLabel?.target?.id === labelData.target.id
-                    ? "#f44336"
-                    : "#888",
-              },
-              marker: {
-                foregroundColor: {
-                  active:
-                    clickedLabel?.target?.id === labelData.target.id
-                      ? "#f44336"
-                      : "#795548",
-                  inactive: "#999",
-                },
-                icon: icon1,
-              },
+              textColor:
+                clickedLabel?.target?.id === labelData.target.id
+                  ? "#f44336"
+                  : "#888",
+              pinColor:
+                clickedLabel?.target?.id === labelData.target.id
+                  ? "#f44336"
+                  : "#795548",
+              pinColorInactive: "#999",
+              icon: icon1,
             },
             rank:
               clickedLabel?.target?.id === labelData.target.id
