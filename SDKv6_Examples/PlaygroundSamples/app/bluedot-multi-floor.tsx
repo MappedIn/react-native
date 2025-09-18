@@ -1,19 +1,22 @@
-import React, { useEffect, useCallback, useState, useRef } from "react";
+import React, {
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
+import type { ViewStyle } from "react-native";
 import {
   Text,
   View,
   StyleSheet,
   ScrollView,
-  ViewStyle,
   TouchableOpacity,
   Alert,
 } from "react-native";
 import { Link } from "expo-router";
-import {
-  Mappedin,
-  MapView as MappedInView,
-  useMap,
-} from "@mappedin/react-native-sdk";
+import { MapView as MappedInView, useMap } from "@mappedin/react-native-sdk";
+import { useBlueDot, useBlueDotEvent } from "@mappedin/blue-dot/rn";
 // @ts-ignore
 import positions from "./multi-floor-positions.json";
 
@@ -46,43 +49,151 @@ const BlueDotMultiFloorSetup = ({
   onAssertionTestUpdate,
 }: BlueDotMultiFloorSetupProps) => {
   const { mapData, mapView } = useMap();
+  const { enable, disable, update, follow, isReady, position } = useBlueDot();
   const [isNavigating, setIsNavigating] = useState(false);
   const [currentPositionIndex, setCurrentPositionIndex] = useState(0);
   const [navigationStarted, setNavigationStarted] = useState(false);
   const isNavigatingRef = useRef(false);
+
+  // Position update event listener using hook
+  useBlueDotEvent(
+    "position-update",
+    useCallback(
+      (event) => {
+        // Just verify we're receiving position update events with the expected structure
+        const hasValidStructure =
+          event &&
+          event.coordinate &&
+          typeof event.coordinate.latitude === "number" &&
+          typeof event.coordinate.longitude === "number";
+
+        // Update assertion status based on whether we're receiving valid events
+        if (hasValidStructure) {
+          onAssertionTestUpdate(
+            "Position Update",
+            "success",
+            "Receiving position updates"
+          );
+        } else {
+          onAssertionTestUpdate(
+            "Position Update",
+            "failed",
+            "Invalid event structure"
+          );
+        }
+      },
+      [onAssertionTestUpdate]
+    )
+  );
+
+  //	Follow change event listener using hook
+  useBlueDotEvent(
+    "follow-change",
+    useCallback(
+      (event) => {
+        // Just verify we're receiving follow change events with valid structure
+        const isValid = event.following != null;
+
+        // Update assertion status based on whether we're receiving valid events
+        if (isValid) {
+          onAssertionTestUpdate(
+            "Follow Change",
+            "success",
+            "Follow mode changed"
+          );
+        } else {
+          onAssertionTestUpdate(
+            "Follow Change",
+            "failed",
+            "Invalid event structure"
+          );
+        }
+      },
+      [onAssertionTestUpdate]
+    )
+  );
+
+  // State change event listener using hook
+  useBlueDotEvent(
+    "state-change",
+    useCallback(
+      (event) => {
+        const isValid = !!event.action;
+
+        // Update assertion status based on whether we're receiving valid events
+        if (isValid) {
+          onAssertionTestUpdate("State Change", "success", "State changed");
+        } else {
+          onAssertionTestUpdate(
+            "State Change",
+            "failed",
+            "Invalid event structure"
+          );
+        }
+      },
+      [onAssertionTestUpdate]
+    )
+  );
+
+  // Position state change monitoring using useEffect
+  useEffect(() => {
+    // Only validate position when it exists (not null/undefined)
+    if (position) {
+      // Just verify the position state has valid basic structure using type-safe approach
+      const positionAny = position as any;
+      const hasValidStructure =
+        position &&
+        typeof position === "object" &&
+        ((positionAny.latitude !== undefined &&
+          positionAny.longitude !== undefined) ||
+          (positionAny.coordinate &&
+            positionAny.coordinate.latitude !== undefined &&
+            positionAny.coordinate.longitude !== undefined));
+
+      // Update assertion status based on whether position state has valid structure
+      if (hasValidStructure) {
+        onAssertionTestUpdate(
+          "Position State",
+          "success",
+          "Position state updated"
+        );
+      } else {
+        onAssertionTestUpdate(
+          "Position State",
+          "failed",
+          "Invalid position structure"
+        );
+      }
+    } else {
+      // Position is null/undefined, which is also a valid state to track
+      onAssertionTestUpdate(
+        "Position State",
+        "pending",
+        "Waiting for position"
+      );
+    }
+  }, [position, onAssertionTestUpdate]);
 
   const wait = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
   const startNavigation = useCallback(async () => {
-    if (!mapData || !mapView) {
+    if (!mapData || !mapView || !isReady) {
       Alert.alert("Error", "Map not ready or navigation already in progress");
       return;
     }
 
     try {
-      console.log("true");
       setIsNavigating(true);
       isNavigatingRef.current = true;
       setNavigationStarted(true);
       setCurrentPositionIndex(0);
 
-      onAssertionTestUpdate(
-        "Follow Change",
-        "pending",
-        "Waiting for blue-dot-follow-change event..."
-      );
-      onAssertionTestUpdate(
-        "Position Update",
-        "pending",
-        "Waiting for blue-dot-position-update event..."
-      );
-      onAssertionTestUpdate(
-        "State Change",
-        "pending",
-        "Waiting for blue-dot-state-change event..."
-      );
+      onAssertionTestUpdate("Follow Change", "pending", "Waiting...");
+      onAssertionTestUpdate("Position Update", "pending", "Waiting...");
+      onAssertionTestUpdate("State Change", "pending", "Waiting...");
+      onAssertionTestUpdate("Position State", "pending", "Waiting...");
 
       const floors = mapData.getByType("floor");
       if (floors.length === 0) {
@@ -113,7 +224,6 @@ const BlueDotMultiFloorSetup = ({
         Alert.alert("Error", "Could not create coordinates");
         return;
       }
-      console.log("coordinates", startCoordinate, endCoordinate);
 
       // Get directions
       const directions = await mapView.getDirections(
@@ -125,7 +235,6 @@ const BlueDotMultiFloorSetup = ({
         return;
       }
 
-      console.log("draw");
       // Draw the navigation path
       await mapView.Navigation.draw(directions, {
         pathOptions: {
@@ -139,101 +248,20 @@ const BlueDotMultiFloorSetup = ({
         },
       });
 
-      mapView.on(
-        "blue-dot-position-update",
-        (event: Mappedin.TBlueDotEvents) => {
-          const isEqual = mapView.BlueDot.coordinate?.isEqual(event.coordinate);
-          console.log("blue-dot-position-update assertion:", isEqual, {
-            event: { coordinate: event.coordinate },
-            cached: { coordinate: mapView.BlueDot.coordinate },
-          });
-
-          // Update assertion status based on coordinate equality check
-          if (isEqual) {
-            onAssertionTestUpdate(
-              "Position Update",
-              "success",
-              "✅ Position caching works! Event coordinate matches cached coordinate"
-            );
-          } else {
-            onAssertionTestUpdate(
-              "Position Update",
-              "failed",
-              `❌ Position caching failed! Coordinates don't match`
-            );
-          }
-        }
-      );
-
-      mapView.on("blue-dot-follow-change", (event: any) => {
-        const isEqual = event.following === mapView.BlueDot.following;
-        console.log("blue-dot-follow-change assertion:", isEqual, {
-          event: { following: event.following },
-          cached: { following: mapView.BlueDot.following },
-        });
-
-        // Update assertion status based on equality check
-        if (isEqual) {
-          onAssertionTestUpdate(
-            "Follow Change",
-            "success",
-            "✅ Follow caching works! Event matches cached following value"
-          );
-        } else {
-          onAssertionTestUpdate(
-            "Follow Change",
-            "failed",
-            `❌ Follow caching failed! Event: ${event.following}, Cached: ${mapView.BlueDot.following}`
-          );
-        }
-      });
-      mapView.on("blue-dot-state-change", (event: any) => {
-        const isEqual = event.state === mapView.BlueDot.state;
-
-        if (isEqual) {
-          onAssertionTestUpdate(
-            "State Change",
-            "success",
-            "✅ State caching works! Event matches cached state value"
-          );
-        } else {
-          onAssertionTestUpdate(
-            "State Change",
-            "failed",
-            `❌ State caching failed! Event: ${event.state}, Cached: ${mapView.BlueDot.state}`
-          );
-        }
-      });
-
-      // Enable BlueDot
-      await mapView.BlueDot.enable({
+      // Enable BlueDot using hook
+      await enable({
         watchDevicePosition: false,
       });
 
-      mapView.BlueDot.follow("position-and-path-direction", {
+      await follow("position-and-path-direction", {
         zoomLevel: 19,
       });
 
       // Start position updates
-      console.log(
-        "Starting BlueDot navigation through",
-        positions.length,
-        "positions",
-        { isNavigating }
-      );
-      console.log(
-        "floor",
-        mapData
-          .getByType("floor")
-          .map((f: any) => ({ id: f.id, name: f.name, elevation: f.elevation }))
-      );
 
       for (let i = 0; i < positions.length; i++) {
         // Check if navigation has been stopped
         if (!isNavigatingRef.current) {
-          console.log(
-            "Navigation stopped, breaking out of position update loop"
-          );
           break;
         }
 
@@ -242,21 +270,16 @@ const BlueDotMultiFloorSetup = ({
         setCurrentPositionIndex(i);
 
         const floor = i < positions.length / 2 ? startingFloor : endingFloor;
-        // Update BlueDot position with proper GeolocationCoordinates format
-        await mapView.BlueDot.update({
+        // Update BlueDot position using hook
+        await update({
           latitude: position.latitude,
           longitude: position.longitude,
           heading: Math.random() * 360,
           accuracy: 10 * Math.random(),
           floorOrFloorId: floor,
         });
-
-        console.log(`Updated BlueDot position:`, {
-          floorLevel: floor?.elevation, // Switch floors mid-journey
-        });
+        console.log("heart beat...");
       }
-
-      console.log("BlueDot navigation completed");
       // Only show completion alert if navigation wasn't stopped
       if (isNavigatingRef.current) {
         Alert.alert(
@@ -276,38 +299,36 @@ const BlueDotMultiFloorSetup = ({
         error instanceof Error ? error.message : "Unknown error occurred"
       );
     } finally {
-      console.log("false");
+      console.log("DONE");
       setIsNavigating(false);
       isNavigatingRef.current = false;
     }
-  }, [mapData, mapView, isNavigating, onAssertionTestUpdate]);
+  }, [
+    mapData,
+    mapView,
+    isNavigating,
+    onAssertionTestUpdate,
+    isReady,
+    enable,
+    follow,
+    update,
+  ]);
 
   const stopNavigation = useCallback(() => {
     setIsNavigating(false);
     isNavigatingRef.current = false;
     if (mapView) {
-      mapView.BlueDot.disable();
+      disable();
       mapView.Navigation.clear();
     }
     setNavigationStarted(false);
     setCurrentPositionIndex(0);
     // Reset assertion status
-    onAssertionTestUpdate(
-      "Follow Change",
-      "pending",
-      "Waiting for blue-dot-follow-change event..."
-    );
-    onAssertionTestUpdate(
-      "Position Update",
-      "pending",
-      "Waiting for blue-dot-position-update event..."
-    );
-    onAssertionTestUpdate(
-      "State Change",
-      "pending",
-      "Waiting for blue-dot-state-change event..."
-    );
-  }, [mapView, onAssertionTestUpdate]);
+    onAssertionTestUpdate("Follow Change", "pending", "Waiting...");
+    onAssertionTestUpdate("Position Update", "pending", "Waiting...");
+    onAssertionTestUpdate("State Change", "pending", "Waiting...");
+    onAssertionTestUpdate("Position State", "pending", "Waiting...");
+  }, [mapView, disable, onAssertionTestUpdate]);
 
   return (
     <>
@@ -467,59 +488,108 @@ const controlStyles = StyleSheet.create({
   },
 });
 
-// Simple assertion test result component
+// Clean assertion test result component (Shadcn-inspired)
 const AssertionTestResult = ({ tests }: { tests: AssertionTest[] }) => {
+  const getStatusIcon = (status: AssertionStatus) => {
+    switch (status) {
+      case "success":
+        return "✓";
+      case "failed":
+        return "✗";
+      case "pending":
+        return "○";
+      default:
+        return "○";
+    }
+  };
+
   const getStatusColor = (status: AssertionStatus) => {
     switch (status) {
       case "success":
-        return "#28a745";
+        return "#10b981"; // green-500
       case "failed":
-        return "#dc3545";
+        return "#ef4444"; // red-500
       case "pending":
-        return "#8e8e93"; // Mute grey instead of spinner
+        return "#9ca3af"; // gray-400
       default:
-        return "#8e8e93";
+        return "#9ca3af";
     }
   };
 
   return (
     <View style={assertionStyles.container}>
-      {tests.map((test) => (
-        <View key={test.name} style={assertionStyles.testItem}>
-          <Text
-            style={[
-              assertionStyles.message,
-              { color: getStatusColor(test.status) },
-            ]}
-          >
-            {test.message}
-          </Text>
-        </View>
-      ))}
+      <Text style={assertionStyles.title}>Event Status</Text>
+      <View style={assertionStyles.grid}>
+        {tests.map((test) => (
+          <View key={test.name} style={assertionStyles.testItem}>
+            <View style={assertionStyles.statusRow}>
+              <Text
+                style={[
+                  assertionStyles.statusIcon,
+                  { color: getStatusColor(test.status) },
+                ]}
+              >
+                {getStatusIcon(test.status)}
+              </Text>
+              <Text style={assertionStyles.testName}>{test.name}</Text>
+            </View>
+            <Text style={assertionStyles.testMessage}>{test.message}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
 
-// Simplified styles for assertion tests
+// Clean, modern styles for assertion tests (Shadcn-inspired)
 const assertionStyles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     marginVertical: 16,
-    padding: 16,
+    padding: 20,
     borderRadius: 12,
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#e5e7eb", // gray-200
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  title: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#1f2937", // gray-800
+    marginBottom: 12,
+    letterSpacing: 0.25,
+  },
+  grid: {
+    gap: 12,
   },
   testItem: {
-    marginVertical: 4,
+    gap: 4,
   },
-  message: {
+  statusRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  statusIcon: {
+    fontSize: 14,
+    fontWeight: "600",
+    width: 16,
+    textAlign: "center",
+  },
+  testName: {
     fontSize: 13,
     fontWeight: "500",
+    color: "#374151", // gray-700
+  },
+  testMessage: {
+    fontSize: 11,
+    color: "#6b7280", // gray-500
+    marginLeft: 24,
   },
 });
 
@@ -529,39 +599,43 @@ export default function BlueDotMultiFloorExample() {
     {
       name: "Follow Change",
       status: "pending",
-      message: "Waiting for blue-dot-follow-change event...",
+      message: "Waiting...",
     },
     {
       name: "Position Update",
       status: "pending",
-      message: "Waiting for blue-dot-position-update event...",
+      message: "Waiting...",
     },
     {
       name: "State Change",
       status: "pending",
-      message: "Waiting for blue-dot-state-change event...",
+      message: "Waiting...",
+    },
+    {
+      name: "Position State",
+      status: "pending",
+      message: "Waiting...",
     },
   ]);
 
-  const handleMapReady = () => {
+  const handleMapReady = useCallback(() => {
     console.log("BlueDot Multi-floor map ready");
-  };
+  }, []);
 
-  const handleMapError = (error: string) => {
+  const handleMapError = useCallback((error: string) => {
     console.error("BlueDot Multi-floor map error:", error);
-  };
+  }, []);
 
-  const handleAssertionTestUpdate = (
-    testName: string,
-    status: AssertionStatus,
-    message: string
-  ) => {
-    setAssertionTests((prevTests) =>
-      prevTests.map((test) =>
-        test.name === testName ? { ...test, status, message } : test
-      )
-    );
-  };
+  const handleAssertionTestUpdate = useCallback(
+    (testName: string, status: AssertionStatus, message: string) => {
+      setAssertionTests((prevTests) =>
+        prevTests.map((test) =>
+          test.name === testName ? { ...test, status, message } : test
+        )
+      );
+    },
+    []
+  );
 
   return (
     <ScrollView
@@ -569,7 +643,7 @@ export default function BlueDotMultiFloorExample() {
       contentContainerStyle={styles.contentContainer}
     >
       <View style={styles.header}>
-        <Text style={styles.title}>🔵 BlueDot Multi-floor Navigation</Text>
+        <Text style={styles.title}>BlueDot Multi-floor Navigation</Text>
         <Text style={styles.description}>
           This example demonstrates BlueDot navigation across multiple floors,
           following a predefined path with real-time position updates.

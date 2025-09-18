@@ -11,7 +11,7 @@ import { Link } from "expo-router";
 import {
   MapView as MappedInView,
   useMap,
-  useEvent,
+  useMapViewEvent as useEvent,
   Marker,
 } from "@mappedin/react-native-sdk";
 
@@ -126,7 +126,7 @@ const MapSetup = () => {
         // Update the marker's anchor using updateState if marker exists
         if (sirenMarker && mapView) {
           mapView.updateState(sirenMarker, {
-            anchor: sirensAnchorOptions[newIndex],
+            placement: sirensAnchorOptions[newIndex],
           });
         }
 
@@ -177,7 +177,7 @@ const MapSetup = () => {
           `}
           options={{
             interactive: true,
-            anchor: sirensAnchorOptions[sirensAnchorIndex],
+            placement: sirensAnchorOptions[sirensAnchorIndex],
             rank: "always-visible",
           }}
           onLoad={(marker: any) => {

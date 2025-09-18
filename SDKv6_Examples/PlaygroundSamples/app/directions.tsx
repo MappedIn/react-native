@@ -1,12 +1,13 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, ViewStyle } from "react-native";
+import type { ViewStyle } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { Link } from "expo-router";
 import {
   MapView as MappedInView,
   useMap,
-  useEvent,
-  Mappedin,
+  useMapViewEvent,
 } from "@mappedin/react-native-sdk";
+import type Mappedin from "@mappedin/mappedin-js";
 
 export interface MapViewProps {
   style?: ViewStyle;
@@ -43,7 +44,7 @@ const DirectionsMapSetup = () => {
       }
 
       directions.instructions.forEach(
-        (instruction: Mappedin.DirectionInstruction) => {
+        (instruction: Mappedin.TDirectionInstruction) => {
           if (!instruction.action.connection) return null;
           const markerTemplate = `
         <div style="
@@ -73,8 +74,7 @@ const DirectionsMapSetup = () => {
 
       console.log("drawing path", directions.coordinates.length);
       await mapView.Paths.add(directions.coordinates, {
-        nearRadius: 0.5,
-        farRadius: 0.5,
+        width: 1,
         color: "#007AFF",
       });
       await mapView.Camera.focusOn(directions.path, {
@@ -101,9 +101,9 @@ const DirectionsMapSetup = () => {
     }
   }, [mapData, drawPath]);
 
-  useEvent("click", (event) => {
+  useMapViewEvent("click", (event) => {
     if (!mapData) return;
-    if (event.spaces.length > 0) {
+    if (event.spaces && event.spaces.length > 0) {
       const destination = event.spaces[0];
       if (destination) {
         drawPath(destination);

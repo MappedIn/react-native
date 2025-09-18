@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, ScrollView, ViewStyle } from "react-native";
+import type { ViewStyle } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { Link } from "expo-router";
-import {
-  Mappedin,
-  MapView,
-  useEvent,
-  useMap,
-} from "@mappedin/react-native-sdk";
+import { MapView, useMapViewEvent, useMap } from "@mappedin/react-native-sdk";
+import type Mappedin from "@mappedin/mappedin-js";
 
 export interface MapViewProps {
   style?: ViewStyle;
@@ -28,8 +25,8 @@ const InteractiveMapSetup = () => {
     });
   }, [mapData, mapView]);
 
-  useEvent("click", (event) => {
-    if (event.spaces.length > 0) {
+  useMapViewEvent("click", (event) => {
+    if (event.spaces?.length) {
       const space = event.spaces[0];
 
       mapView.updateState(space, {
@@ -51,7 +48,7 @@ const InteractiveMapSetup = () => {
         console.error("Error focusing on space:", error);
       });
     }
-    if (event.markers[0]) {
+    if (event.markers?.[0]) {
       mapView.Markers.remove(event.markers[0]);
     }
   });
@@ -71,9 +68,9 @@ export default function UseEventExample() {
       <View style={styles.header}>
         <Text style={styles.title}>🎯 Interactivity</Text>
         <Text style={styles.description}>
-          This example demonstrates interactive map features using the useEvent
-          hook. Click on spaces to focus the camera, add markers with space
-          names, and remove markers by clicking on them.
+          This example demonstrates interactive map features using the
+          useMapViewEvent hook. Click on spaces to focus the camera, add markers
+          with space names, and remove markers by clicking on them.
         </Text>
       </View>
 

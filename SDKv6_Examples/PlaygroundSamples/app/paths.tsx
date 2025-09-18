@@ -10,7 +10,7 @@ import { Link } from "expo-router";
 import {
   MapView as MappedInView,
   useMap,
-  useEvent,
+  useMapViewEvent as useEvent,
   Marker,
   Path,
 } from "@mappedin/react-native-sdk";
@@ -122,7 +122,7 @@ const MapSetup = () => {
           options={{
             interactive: true,
             rank: "always-visible",
-            anchor: "center",
+            placement: "center",
           }}
           onLoad={(marker) => {
             console.log("Toggle marker loaded:", marker.id);
@@ -193,8 +193,7 @@ const MapSetup = () => {
           coordinate={directions.coordinates}
           options={{
             color: "#007AFF",
-            nearRadius: 0.5,
-            farRadius: 0.5,
+            width: 1,
             interactive: true,
           }}
           onLoad={(path) => {

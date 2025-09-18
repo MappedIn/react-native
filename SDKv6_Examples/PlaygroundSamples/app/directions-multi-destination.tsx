@@ -1,11 +1,9 @@
 import React, { useEffect, useCallback, useState, useRef } from "react";
-import { Text, View, StyleSheet, ScrollView, ViewStyle } from "react-native";
+import type { ViewStyle } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { Link } from "expo-router";
-import {
-  MapView as MappedInView,
-  useMap,
-  Mappedin,
-} from "@mappedin/react-native-sdk";
+import { MapView as MappedInView, useMap } from "@mappedin/react-native-sdk";
+import type Mappedin from "@mappedin/mappedin-js";
 
 export interface MapViewProps {
   style?: ViewStyle;
