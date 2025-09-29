@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@mappedin/react-native-sdk": "^5.30.4",
+    "@mappedin/react-native-sdk": "^5.41.11",
     "@react-native-picker/picker": "^2.6.1",
     "@react-navigation/native": "^6.1.14",
     "@react-navigation/native-stack": "^6.9.22",
