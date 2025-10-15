@@ -3,7 +3,6 @@ import React, {
   useCallback,
   useState,
   useEffect,
-  useMemo,
 } from "react";
 import type { ViewStyle } from "react-native";
 import {

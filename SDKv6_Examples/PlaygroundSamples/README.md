@@ -1,6 +1,6 @@
-# Mappedin SDK for React Native v6 Beta Examples
+# Mappedin SDK for React Native v6 Examples
 
-This repository contains comprehensive examples demonstrating the **Mappedin SDK for React Native v6 Beta** - a powerful indoor mapping solution for React Native applications.
+This repository contains comprehensive examples demonstrating the **Mappedin SDK for React Native v6** - a powerful indoor mapping solution for React Native applications.
 
 ## 🚀 Quick Start
 
