@@ -1352,27 +1352,27 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mappedin/blue-dot@latest":
-  version "6.0.1-beta.56"
-  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.56.tgz#16bc8b94d15a340b047ce15453c651a86188a884"
-  integrity sha512-hwnQjXnAEKSZ7rOlsD88ZEc1c8jVXM2HQowxd5QOV9Ms+9azfRxt6GQEQBuEW5QrlHWq5+hcjEQcnfXNMRdJ7Q==
+"@mappedin/blue-dot@6.0.1-beta.58":
+  version "6.0.1-beta.58"
+  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.58.tgz#8ac089b5fea4997dde8f08bc04a707b1a357ba08"
+  integrity sha512-RP0XCK3KNu20vyhvYtv8Xn2bdX2ch3l0tEvIXf70uqh7I7ew2OLAYZXrp+SNb4HfcnlBlvcwWMcSd/vw0RovCw==
 
-"@mappedin/dynamic-focus@latest":
-  version "6.0.1-beta.56"
-  resolved "https://registry.yarnpkg.com/@mappedin/dynamic-focus/-/dynamic-focus-6.0.1-beta.56.tgz#e0b99ea0e183406269a1b26bffbf19e5c7bea75a"
-  integrity sha512-kR8rxTblgh0f+H2x+mw6nulzHdwje+zk+S37O3HReX46MdYEseYtyD/Uo01v0ENGRJGfIareEnQSWJEi9VP7xA==
+"@mappedin/dynamic-focus@6.0.1-beta.59":
+  version "6.0.1-beta.59"
+  resolved "https://registry.yarnpkg.com/@mappedin/dynamic-focus/-/dynamic-focus-6.0.1-beta.59.tgz#dfbabc2a5d492af417ee621684dc4f28c4b29770"
+  integrity sha512-x5U6TvxKNdLFq9GDuRQgqlHRfBHlHEaK2bWfvXBdM8rp+LEHZeKonGC9kvS6NKbvAWyeNoUaRom+W1dZpyBwrQ==
 
-"@mappedin/mappedin-js@^6.0.0-rc.3":
-  version "6.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.0.0-rc.3.tgz#17602963fbeef68f065c2f75cf9ef9c95732f95c"
-  integrity sha512-GU3XuAHqWfnUL/SxSp0sjegvjXO0a/1unrYbMmEyQi5oIsLdfR21adl3veUxjhljxfVkOiAK8N3pXSKwQEt9Ig==
-
-"@mappedin/react-native-sdk@^6.0.0-beta.1":
-  version "6.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.0.0-beta.1.tgz#940ace0d97a743b2e97a1fe21d3c7ff4bea47091"
-  integrity sha512-CDg2Q2r5bzDb0+m46e4SguESWWeHoZ4E3akC6NxVxch6zZEb9+/2pqoZlXswgJrA7ZIRYhDvoI9fZA+0QzMQnw==
+"@mappedin/mappedin-js@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.1.1.tgz#3d02df1b3f8051c510f02b7123cee93b274d1922"
+  integrity sha512-kw5znjKLG7Jz6wT56Adh9IsFQKHSgXGRgBSAxQFYM/K/zZBSCODSwehSCk2//Ea5NrmOR+7j1HjCTk4kyNAtKg==
   dependencies:
-    react-native-webview "13.13.5"
+    zod "^4.0.0"
+
+"@mappedin/react-native-sdk@^6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.1.1.tgz#64bd54fce73bc9df49ca457f87828b5bf407dd0d"
+  integrity sha512-vmKypiyoe/J8t7Yq+b0laPu8s9wzWoSF6yT6K3YCMEN41sXvoRNJ97obV09i+BmmIPyzQ24ZPhIz1qlD9OBWYg==
 
 "@napi-rs/wasm-runtime@^0.2.11":
   version "0.2.12"
@@ -6920,3 +6920,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zod@^4.0.0:
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.1.12.tgz#64f1ea53d00eab91853195653b5af9eee68970f0"
+  integrity sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==
