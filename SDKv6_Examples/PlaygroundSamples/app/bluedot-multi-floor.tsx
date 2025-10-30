@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useCallback,
-  useState,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { useRef, useCallback, useState, useEffect } from "react";
 import type { ViewStyle } from "react-native";
 import {
   Text,
@@ -49,7 +43,7 @@ const BlueDotMultiFloorSetup = ({
   onAssertionTestUpdate,
 }: BlueDotMultiFloorSetupProps) => {
   const { mapData, mapView } = useMap();
-  const { enable, disable, update, follow, isReady, position } = useBlueDot();
+  const { enable, disable, update, follow, isReady, coordinate } = useBlueDot();
   const [isNavigating, setIsNavigating] = useState(false);
   const [currentPositionIndex, setCurrentPositionIndex] = useState(0);
   const [navigationStarted, setNavigationStarted] = useState(false);
@@ -138,12 +132,12 @@ const BlueDotMultiFloorSetup = ({
   // Position state change monitoring using useEffect
   useEffect(() => {
     // Only validate position when it exists (not null/undefined)
-    if (position) {
+    if (coordinate) {
       // Just verify the position state has valid basic structure using type-safe approach
-      const positionAny = position as any;
+      const positionAny = coordinate as any;
       const hasValidStructure =
-        position &&
-        typeof position === "object" &&
+        coordinate &&
+        typeof coordinate === "object" &&
         ((positionAny.latitude !== undefined &&
           positionAny.longitude !== undefined) ||
           (positionAny.coordinate &&
@@ -172,7 +166,7 @@ const BlueDotMultiFloorSetup = ({
         "Waiting for position"
       );
     }
-  }, [position, onAssertionTestUpdate]);
+  }, [coordinate, onAssertionTestUpdate]);
 
   const wait = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));

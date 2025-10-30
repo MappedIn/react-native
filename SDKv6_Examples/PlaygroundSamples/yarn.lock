@@ -1352,27 +1352,29 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mappedin/blue-dot@6.0.1-beta.58":
-  version "6.0.1-beta.58"
-  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.58.tgz#8ac089b5fea4997dde8f08bc04a707b1a357ba08"
-  integrity sha512-RP0XCK3KNu20vyhvYtv8Xn2bdX2ch3l0tEvIXf70uqh7I7ew2OLAYZXrp+SNb4HfcnlBlvcwWMcSd/vw0RovCw==
-
-"@mappedin/dynamic-focus@6.0.1-beta.59":
-  version "6.0.1-beta.59"
-  resolved "https://registry.yarnpkg.com/@mappedin/dynamic-focus/-/dynamic-focus-6.0.1-beta.59.tgz#dfbabc2a5d492af417ee621684dc4f28c4b29770"
-  integrity sha512-x5U6TvxKNdLFq9GDuRQgqlHRfBHlHEaK2bWfvXBdM8rp+LEHZeKonGC9kvS6NKbvAWyeNoUaRom+W1dZpyBwrQ==
-
-"@mappedin/mappedin-js@^6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.1.1.tgz#3d02df1b3f8051c510f02b7123cee93b274d1922"
-  integrity sha512-kw5znjKLG7Jz6wT56Adh9IsFQKHSgXGRgBSAxQFYM/K/zZBSCODSwehSCk2//Ea5NrmOR+7j1HjCTk4kyNAtKg==
+"@mappedin/blue-dot@6.0.1-beta.60":
+  version "6.0.1-beta.60"
+  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.60.tgz#19f6b9d749e21a32bea3eb7660a6eb846addeb4e"
+  integrity sha512-RjaJ0MRPoq2i/Uw+xKlnxWZ2REoT/kzs1Zv2yMKL8YvyQ/LzWeI6SHC8Iu8VSg1gNL0IfeoMAV/E6gALnmqMUw==
   dependencies:
     zod "^4.0.0"
 
-"@mappedin/react-native-sdk@^6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.1.1.tgz#64bd54fce73bc9df49ca457f87828b5bf407dd0d"
-  integrity sha512-vmKypiyoe/J8t7Yq+b0laPu8s9wzWoSF6yT6K3YCMEN41sXvoRNJ97obV09i+BmmIPyzQ24ZPhIz1qlD9OBWYg==
+"@mappedin/dynamic-focus@6.0.1-beta.61":
+  version "6.0.1-beta.61"
+  resolved "https://registry.yarnpkg.com/@mappedin/dynamic-focus/-/dynamic-focus-6.0.1-beta.61.tgz#e07eb34a9ae677828e4726ef8550fb6d05661295"
+  integrity sha512-yroTD4LO+tfsAZQh35EtydLCdY408hclzh32JMY5SW+N/MdgOkEAHwH+ysNQmyMcTwzNhUT+d8hcEix3g0PJNA==
+
+"@mappedin/mappedin-js@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.2.0.tgz#a45f0d48d934fce764f7917474534752fd3fc736"
+  integrity sha512-Avh1W6XAw5AmjzLRVRqCg84mvSJo0MWprZD07K/i+lLk/zfv02sWDFGQKGH6PoZSxxvDvHUj8heuC24v1VRsiA==
+  dependencies:
+    zod "^4.0.0"
+
+"@mappedin/react-native-sdk@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.2.0.tgz#cd20f35ada490924e90799d281b286f8ece44f13"
+  integrity sha512-bQgZ5jjnVnuxd2b4H+VWMqhP5k1rm24jJISZa/zZqWk7avoYLG4XGhsmtSefYfa4Z3ai8nftL/vU1bF3atVTNA==
 
 "@napi-rs/wasm-runtime@^0.2.11":
   version "0.2.12"
