@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
-    "@mappedin/blue-dot": "6.0.1-beta.60",
+    "@mappedin/blue-dot": "6.0.1-beta.61",
     "@mappedin/dynamic-focus": "6.0.1-beta.61",
-    "@mappedin/mappedin-js": "^6.2.0",
-    "@mappedin/react-native-sdk": "^6.2.0",
+    "@mappedin/mappedin-js": "^6.3.0",
+    "@mappedin/react-native-sdk": "^6.3.0",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
