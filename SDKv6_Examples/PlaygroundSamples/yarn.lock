@@ -1352,10 +1352,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mappedin/blue-dot@6.0.1-beta.60":
-  version "6.0.1-beta.60"
-  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.60.tgz#19f6b9d749e21a32bea3eb7660a6eb846addeb4e"
-  integrity sha512-RjaJ0MRPoq2i/Uw+xKlnxWZ2REoT/kzs1Zv2yMKL8YvyQ/LzWeI6SHC8Iu8VSg1gNL0IfeoMAV/E6gALnmqMUw==
+"@mappedin/blue-dot@6.0.1-beta.61":
+  version "6.0.1-beta.61"
+  resolved "https://registry.yarnpkg.com/@mappedin/blue-dot/-/blue-dot-6.0.1-beta.61.tgz#0523796c174ac91a2313c22fd994f11baac510a5"
+  integrity sha512-NRc+J1/uoL3FU9S39uYVGV/TMzzb8Ay5cTiPkDD50bwbbwpFr0Fqu7cxxv7/TKh8kMhgBKPvoyS4ZQyAaJBbWQ==
   dependencies:
     zod "^4.0.0"
 
@@ -1364,17 +1364,17 @@
   resolved "https://registry.yarnpkg.com/@mappedin/dynamic-focus/-/dynamic-focus-6.0.1-beta.61.tgz#e07eb34a9ae677828e4726ef8550fb6d05661295"
   integrity sha512-yroTD4LO+tfsAZQh35EtydLCdY408hclzh32JMY5SW+N/MdgOkEAHwH+ysNQmyMcTwzNhUT+d8hcEix3g0PJNA==
 
-"@mappedin/mappedin-js@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.2.0.tgz#a45f0d48d934fce764f7917474534752fd3fc736"
-  integrity sha512-Avh1W6XAw5AmjzLRVRqCg84mvSJo0MWprZD07K/i+lLk/zfv02sWDFGQKGH6PoZSxxvDvHUj8heuC24v1VRsiA==
+"@mappedin/mappedin-js@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mappedin/mappedin-js/-/mappedin-js-6.3.0.tgz#f65d57d8f328acb0c16049956968fc79e57a05d3"
+  integrity sha512-qrQAExzERIXnn+YOPnr7UnevuoFP/SmZPbqpb2WUusWZYoaad8sS/X5OXuG7NM2uFE5rCJxIBnMQnedXmO2iUw==
   dependencies:
     zod "^4.0.0"
 
-"@mappedin/react-native-sdk@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.2.0.tgz#cd20f35ada490924e90799d281b286f8ece44f13"
-  integrity sha512-bQgZ5jjnVnuxd2b4H+VWMqhP5k1rm24jJISZa/zZqWk7avoYLG4XGhsmtSefYfa4Z3ai8nftL/vU1bF3atVTNA==
+"@mappedin/react-native-sdk@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@mappedin/react-native-sdk/-/react-native-sdk-6.3.0.tgz#3d51135b880a9dc29d764e807b71de7045bb7f6e"
+  integrity sha512-yAhsshg2m1pjHSKy+4c1+a+yYL4+ZLDLqmN2fnj9jwrHQEo1qCO520f2etMyBibAxhLFihAE6gWt/NAyL791ZQ==
 
 "@napi-rs/wasm-runtime@^0.2.11":
   version "0.2.12"
