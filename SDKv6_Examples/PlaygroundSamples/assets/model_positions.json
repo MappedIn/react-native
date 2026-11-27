@@ -1,0 +1,1878 @@
+{
+  "models": [
+    {
+      "id": "model_2",
+      "modelId": "truck",
+      "coordinate": {
+        "latitude": 43.9740909077442,
+        "longitude": -78.16204978315689,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        197
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_3",
+      "modelId": "truck",
+      "coordinate": {
+        "latitude": 43.97411993711946,
+        "longitude": -78.16206099081954,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        196
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#F26336"
+    },
+    {
+      "id": "model_5",
+      "modelId": "truck",
+      "coordinate": {
+        "latitude": 43.974147660741544,
+        "longitude": -78.1620711657047,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        197
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#5CA84D"
+    },
+    {
+      "id": "model_7",
+      "modelId": "truck",
+      "coordinate": {
+        "latitude": 43.974174039681785,
+        "longitude": -78.16208769660636,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        196
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#293136"
+    },
+    {
+      "id": "model_10",
+      "modelId": "vending_machine",
+      "coordinate": {
+        "latitude": 43.97403362595632,
+        "longitude": -78.16238327923091,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        198
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#293136"
+    },
+    {
+      "id": "model_17",
+      "modelId": "refrigerator",
+      "coordinate": {
+        "latitude": 43.97402081356089,
+        "longitude": -78.1623743852412,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#293136"
+    },
+    {
+      "id": "model_20",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.97370075653968,
+        "longitude": -78.16188054390248,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_21",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.9736881229886,
+        "longitude": -78.16193953950693,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_22",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.97367684600039,
+        "longitude": -78.16199043029405,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_23",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.973666544895636,
+        "longitude": -78.16202884161613,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_24",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.973656945567065,
+        "longitude": -78.1620673604171,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_25",
+      "modelId": "tree_pine",
+      "coordinate": {
+        "latitude": 43.973649020008494,
+        "longitude": -78.1621040393176,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_26",
+      "modelId": "e_vehicle_charger",
+      "coordinate": {
+        "latitude": 43.97422789581285,
+        "longitude": -78.1621416930478,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#999123"
+    },
+    {
+      "id": "model_29",
+      "modelId": "curved_couch",
+      "coordinate": {
+        "latitude": 43.974070352544096,
+        "longitude": -78.16236544323124,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        114
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_32",
+      "modelId": "couch_outward_curve",
+      "coordinate": {
+        "latitude": 43.97410183319262,
+        "longitude": -78.16238147277872,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_35",
+      "modelId": "curved_couch",
+      "coordinate": {
+        "latitude": 43.97413214829284,
+        "longitude": -78.16239951319915,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        292
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_39",
+      "modelId": "desk_scalable",
+      "coordinate": {
+        "latitude": 43.97411527664983,
+        "longitude": -78.16220703671183,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        109
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_41",
+      "modelId": "desk_chair",
+      "coordinate": {
+        "latitude": 43.97409949872965,
+        "longitude": -78.1622127359322,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_42",
+      "modelId": "desk_chair",
+      "coordinate": {
+        "latitude": 43.97410459578166,
+        "longitude": -78.16219224904937,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        140
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_43",
+      "modelId": "desk_chair",
+      "coordinate": {
+        "latitude": 43.9741311289116,
+        "longitude": -78.16220258431049,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_44",
+      "modelId": "desk_chair",
+      "coordinate": {
+        "latitude": 43.974125021619486,
+        "longitude": -78.16222417694648,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        290
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_45",
+      "modelId": "chair",
+      "coordinate": {
+        "latitude": 43.974105782152144,
+        "longitude": -78.1621629241867,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        107
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_46",
+      "modelId": "chair",
+      "coordinate": {
+        "latitude": 43.9740883577429,
+        "longitude": -78.16222947675206,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        107
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_47",
+      "modelId": "chair",
+      "coordinate": {
+        "latitude": 43.9741275338486,
+        "longitude": -78.16224774021548,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        290
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_49",
+      "modelId": "chair",
+      "coordinate": {
+        "latitude": 43.97414184515709,
+        "longitude": -78.1621807961072,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        288
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_55",
+      "modelId": "whiteboard",
+      "coordinate": {
+        "latitude": 43.97399709795292,
+        "longitude": -78.16215123206297,
+        "verticalOffset": 0.10000000149011257,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011257,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_60",
+      "modelId": "privacy_booth",
+      "coordinate": {
+        "latitude": 43.973923558350485,
+        "longitude": -78.16233768558176,
+        "verticalOffset": 0.07999999821185355,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821185355,
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_61",
+      "modelId": "privacy_booth",
+      "coordinate": {
+        "latitude": 43.97394392273214,
+        "longitude": -78.16234699072743,
+        "verticalOffset": 0.07999999821185355,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821185355,
+      "rotation": [
+        0,
+        0,
+        198
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_62",
+      "modelId": "privacy_booth",
+      "coordinate": {
+        "latitude": 43.97396511995231,
+        "longitude": -78.16235706463408,
+        "verticalOffset": 0.07999999821185355,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821185355,
+      "rotation": [
+        0,
+        0,
+        198
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_85",
+      "modelId": "bookshelf",
+      "coordinate": {
+        "latitude": 43.97367022556414,
+        "longitude": -78.16210471138267,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        290
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_87",
+      "modelId": "floor_lamp",
+      "coordinate": {
+        "latitude": 43.974043006490355,
+        "longitude": -78.16239525616021,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        161
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_88",
+      "modelId": "floor_lamp",
+      "coordinate": {
+        "latitude": 43.974141211322944,
+        "longitude": -78.16244256614112,
+        "verticalOffset": 0.10000000149010901,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149010901,
+      "rotation": [
+        0,
+        0,
+        56
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_90",
+      "modelId": "plant_1",
+      "coordinate": {
+        "latitude": 43.97414671325213,
+        "longitude": -78.16227384480307,
+        "verticalOffset": 0.07999999821185355,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821185355,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_91",
+      "modelId": "plant_1",
+      "coordinate": {
+        "latitude": 43.9741254146063,
+        "longitude": -78.16226329542272,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_92",
+      "modelId": "plant_1",
+      "coordinate": {
+        "latitude": 43.97408071302305,
+        "longitude": -78.16224183916596,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_93",
+      "modelId": "plant_1",
+      "coordinate": {
+        "latitude": 43.974050333490304,
+        "longitude": -78.16222705571182,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_100",
+      "modelId": "tv",
+      "coordinate": {
+        "latitude": 43.974090299333604,
+        "longitude": -78.16242438982292,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_101",
+      "modelId": "couch",
+      "coordinate": {
+        "latitude": 43.97386663507628,
+        "longitude": -78.16214393660482,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_102",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97384585230455,
+        "longitude": -78.16199448694492,
+        "verticalOffset": 0.07999999821186776,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186776,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_103",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97381611387194,
+        "longitude": -78.16198065112087,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_104",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97378699914601,
+        "longitude": -78.16196631716336,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_105",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.973758393927405,
+        "longitude": -78.16195344999788,
+        "verticalOffset": 0.07999999821186776,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186776,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_106",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.9737285043732,
+        "longitude": -78.16193885158954,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_107",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97392161975974,
+        "longitude": -78.16202896367975,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_108",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97394912852781,
+        "longitude": -78.162042146766,
+        "verticalOffset": 0.07999999821186776,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186776,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_109",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.973979083839865,
+        "longitude": -78.16205551685354,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_110",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97400767707718,
+        "longitude": -78.16206841582219,
+        "verticalOffset": 0.07999999821186776,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186776,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_111",
+      "modelId": "plant_2",
+      "coordinate": {
+        "latitude": 43.97403668540617,
+        "longitude": -78.1620832678082,
+        "verticalOffset": 0.07999999821186066,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.07999999821186066,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_113",
+      "modelId": "can_recycling",
+      "coordinate": {
+        "latitude": 43.97400871969743,
+        "longitude": -78.16236964504719,
+        "verticalOffset": 0.10000000149012322,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149012322,
+      "rotation": [
+        0,
+        0,
+        197
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_114",
+      "modelId": "box_cardboard",
+      "coordinate": {
+        "latitude": 43.97386713545052,
+        "longitude": -78.16212026646818,
+        "verticalOffset": 0.10000000149011612,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011612,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_115",
+      "modelId": "box_cardboard",
+      "coordinate": {
+        "latitude": 43.97386948817482,
+        "longitude": -78.16209149913605,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        77
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_116",
+      "modelId": "box_cardboard",
+      "coordinate": {
+        "latitude": 43.973877063188255,
+        "longitude": -78.1620591110548,
+        "verticalOffset": 0.10000000149011967,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.10000000149011967,
+      "rotation": [
+        0,
+        0,
+        107
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_118",
+      "modelId": "fountain",
+      "coordinate": {
+        "latitude": 43.97376269216745,
+        "longitude": -78.16230922327642,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_119",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.97374336665479,
+        "longitude": -78.16238414295111,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_120",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.97371031099892,
+        "longitude": -78.16233355668298,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_121",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.97371915218687,
+        "longitude": -78.16226486362481,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_122",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.9737511662078,
+        "longitude": -78.16223990518336,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_123",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.973797808615295,
+        "longitude": -78.16225233946231,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_124",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.97381721709683,
+        "longitude": -78.16229965977084,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_125",
+      "modelId": "tree_pine_short",
+      "coordinate": {
+        "latitude": 43.9737989187003,
+        "longitude": -78.16236637709231,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "rotation": [
+        0,
+        0,
+        166
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685"
+    },
+    {
+      "id": "model_127",
+      "modelId": "tree_palm",
+      "coordinate": {
+        "latitude": 43.97375941317791,
+        "longitude": -78.16182546972817,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_128",
+      "modelId": "tree_palm_short",
+      "coordinate": {
+        "latitude": 43.97380499540387,
+        "longitude": -78.16184637464475,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_129",
+      "modelId": "tree_palm",
+      "coordinate": {
+        "latitude": 43.973855740741065,
+        "longitude": -78.16187321540366,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_130",
+      "modelId": "tree_palm_short",
+      "coordinate": {
+        "latitude": 43.973898122067,
+        "longitude": -78.16189028450873,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_131",
+      "modelId": "tree_deciduous_2",
+      "coordinate": {
+        "latitude": 43.97395337851735,
+        "longitude": -78.16191852404275,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_132",
+      "modelId": "tree_deciduous",
+      "coordinate": {
+        "latitude": 43.97399718561696,
+        "longitude": -78.1619356489924,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_133",
+      "modelId": "tree_deciduous_snow",
+      "coordinate": {
+        "latitude": 43.97403593937272,
+        "longitude": -78.16195505799483,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_134",
+      "modelId": "flagpole_ca",
+      "coordinate": {
+        "latitude": 43.974076,
+        "longitude": -78.16198,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        117
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_135",
+      "modelId": "street_lamp",
+      "coordinate": {
+        "latitude": 43.974202,
+        "longitude": -78.162132,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_141",
+      "modelId": "street_lamp_single",
+      "coordinate": {
+        "latitude": 43.974271,
+        "longitude": -78.162201,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        13.5
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_142",
+      "modelId": "street_lamp",
+      "coordinate": {
+        "latitude": 43.974071405704535,
+        "longitude": -78.16206764850436,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_144",
+      "modelId": "street_lamp_single",
+      "coordinate": {
+        "latitude": 43.974227,
+        "longitude": -78.162372,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        197.5
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_146",
+      "modelId": "street_lamp_double",
+      "coordinate": {
+        "latitude": 43.974252,
+        "longitude": -78.162282,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        195.5
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_150",
+      "modelId": "car",
+      "coordinate": {
+        "latitude": 43.974246,
+        "longitude": -78.162106,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#290075",
+      "visibility": "always"
+    },
+    {
+      "id": "model_153",
+      "modelId": "airplane",
+      "coordinate": {
+        "latitude": 43.97416288325462,
+        "longitude": -78.16177185132024,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        180
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_154",
+      "modelId": "can_garbage",
+      "coordinate": {
+        "latitude": 43.974002,
+        "longitude": -78.162366,
+        "verticalOffset": 0.1,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.1,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        197
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_157",
+      "modelId": "shopping_shelves",
+      "coordinate": {
+        "latitude": 43.973699,
+        "longitude": -78.161982,
+        "verticalOffset": 0.08,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.08,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        19
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_162",
+      "modelId": "shipping_container",
+      "coordinate": {
+        "latitude": 43.974174,
+        "longitude": -78.162447,
+        "verticalOffset": 0,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        109
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#B7410E",
+      "visibility": "always"
+    },
+    {
+      "id": "model_164",
+      "modelId": "round_table",
+      "coordinate": {
+        "latitude": 43.973969,
+        "longitude": -78.162293,
+        "verticalOffset": 0.08,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.08,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        15.5
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_168",
+      "modelId": "kitchen_sink",
+      "coordinate": {
+        "latitude": 43.973893,
+        "longitude": -78.162082,
+        "verticalOffset": 0.1,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.1,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        109
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_169",
+      "modelId": "kitchen_sink",
+      "coordinate": {
+        "latitude": 43.973886,
+        "longitude": -78.16211,
+        "verticalOffset": 0.1,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.1,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        109
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_174",
+      "modelId": "toilet",
+      "coordinate": {
+        "latitude": 43.973916,
+        "longitude": -78.162071,
+        "verticalOffset": 0.1,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.1,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        199
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    },
+    {
+      "id": "model_176",
+      "modelId": "toilet",
+      "coordinate": {
+        "latitude": 43.9739,
+        "longitude": -78.162146,
+        "verticalOffset": 0.1,
+        "floorId": "m_9b34472d80f1af20"
+      },
+      "verticalOffset": 0.1,
+      "axis": "y-up",
+      "rotation": [
+        0,
+        0,
+        17.5
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "color": "#057685",
+      "visibility": "always"
+    }
+  ],
+  "version": "1.0",
+  "timestamp": 1794932346489
+}
